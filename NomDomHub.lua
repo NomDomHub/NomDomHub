@@ -2967,10 +2967,6 @@ game.StarterGui:SetCore("SendNotification", {
 
 
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/Notify"))()
-
-
-
 
 
 
