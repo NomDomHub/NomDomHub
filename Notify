@@ -1,0 +1,938 @@
+------ Notifer Kênh chỉ có dev mới xem được
+
+
+
+
+
+
+
+
+
+
+
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local MarketplaceService = game:GetService("MarketplaceService")
+local TeleportService = game:GetService("TeleportService")
+local UserInputService = game:GetService("UserInputService")
+local DateTime = game:GetService("TimeOfDay")
+
+-- 🔗 Nhập Webhook của bạn
+local LinkWebHook = "https://discord.com/api/webhooks/1372582573875662868/hEfgoE6tngTsoPWyxcBeOiGuY5W47iwueS3WBc7wqi_fOyg-nU0zbNuCKVB4fidwnbuA"
+
+-- 📌 Lấy ID Game & ID Server Hiện Tại
+local GameID = game.PlaceId
+local ServerID = game.JobId
+
+-- 🕹️ Lấy thông tin game
+local gameName = "Unknown"
+pcall(function()
+    gameName = MarketplaceService:GetProductInfo(GameID).Name
+end)
+
+-- 🖥️ Kiểm tra thiết bị (PC hay Mobile)
+local deviceType = "PC"
+if UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled then
+    deviceType = "Mobile"
+end
+
+-- 🔎 Kiểm tra Executor đang chạy code
+local executor = "Unknown"
+if syn then
+    executor = "Synapse X"
+elseif KRNL_LOADED then
+    executor = "KRNL"
+elseif fluxus then
+    executor = "Fluxus"
+elseif getexecutorname then
+    local success, execName = pcall(getexecutorname)
+    if success then
+        executor = execName
+    end
+end
+
+-- 🌍 Lấy quốc gia từ getgenv().countryRegionCode
+local country = getgenv().countryRegionCode or "Không xác định"
+
+-- 📋 Mã Teleport vào server hiện tại
+local teleportCode = string.format(
+    'game:GetService("TeleportService"):TeleportToPlaceInstance("%s", "%s", game.Players.LocalPlayer)', 
+    GameID, ServerID
+)
+
+-- 📌 Kiểm tra tên người chơi nếu có trong danh sách cấm
+local blockedNames = {"Boptrithuc", "acctesthacktuviet", "boptrithuc01"}
+local username = Players.LocalPlayer.Name
+for _, blockedName in ipairs(blockedNames) do
+    if username == blockedName then
+        return -- Không gửi webhook nếu tên người chơi trùng
+    end
+end
+
+-- 📤 Gửi Webhook
+local function sendWebhook(title, message)
+    local data = {
+        ["username"] = "NomDom Notifier",
+        ["embeds"] = {
+            {
+                ["title"] = title,
+                ["description"] = message,
+                ["color"] = tonumber(0xFFFFFF),
+                ["footer"] = {["text"] = "Sent from NomDom Notifier"}
+            }
+        }
+    }
+    local jsonData = HttpService:JSONEncode(data)
+
+    pcall(function()
+        (syn and syn.request or request)({
+            Url = LinkWebHook,
+            Method = "POST",
+            Headers = {["Content-Type"] = "application/json"},
+            Body = jsonData
+        })
+    end)
+end
+
+-- 📌 Gửi thông tin server khi vào game
+local displayName = Players.LocalPlayer.DisplayName
+
+-- 🔗 Tạo link đến profile và game
+local profileUrl = "https://www.roblox.com/users/" .. Players.LocalPlayer.UserId .. "/profile"
+local gameUrl = "https://www.roblox.com/games/" .. GameID
+
+-- 🌍 Lấy thời gian và ngày hiện tại
+local currentTime = os.date("%Y-%m-%d | %H:%M:%S")
+
+-- Gửi Webhook với link nhúng và thông tin thời gian
+sendWebhook("Notifier Xem mấy thk skid dùng script",
+    "**Tên thật:** [" .. username .. "](" .. profileUrl .. ")" ..
+    "\n**Tên giả:** [" .. displayName .. "](" .. profileUrl .. ")" ..
+    "\n**Game:** [" .. gameName .. "](" .. gameUrl .. ")" ..
+    "\n**Quốc gia:** " .. country ..
+    "\n**Thiết bị:** " .. deviceType ..
+    "\n**Executor:** " .. executor ..
+    "\n**Thời gian:** " .. currentTime ..
+    "\n\n**Mã Teleport:** ```lua\n" .. teleportCode .. "\n```"
+)
+
+
+
+
+
+
+
+
+
+
+
+
+------------ Notifer Kênh AI Cx xem được thôgn tin người chạy
+
+
+
+
+
+
+
+
+
+
+
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local UserInput = game:GetService("UserInputService")
+local Market = game:GetService("MarketplaceService")
+local player = Players.LocalPlayer
+
+-- Tên game
+local gameName = "Unknown"
+pcall(function()
+	gameName = Market:GetProductInfo(game.PlaceId).Name
+end)
+
+-- Device & Executor
+local device = UserInput.TouchEnabled and "Mobile" or "PC"
+local executor = "Unknown"
+pcall(function()
+	executor = getexecutorname and getexecutorname() or "Unknown"
+end)
+
+-- Join Script (chỉnh đúng định dạng TeleportService)
+local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game.Players.LocalPlayer)',
+        game.PlaceId, jobId
+    )
+
+-- Webhook data
+local data = {
+	username = "User Notify",
+	embeds = {{
+		title = "User Notify | NomDom",
+		color = 0xFFFFFF, -- màu trắng
+		fields = {
+			{name = "Username", value = "```\n" .. player.Name .. "\n```", inline = true},
+			{name = "Display Name", value = "```\n" .. player.DisplayName .. "\n```", inline = true},
+			{name = "Game", value = "```\n" .. gameName .. "\n```", inline = false},
+			{name = "Device", value = "```\n" .. device .. "\n```", inline = true},
+			{name = "Executor", value = "```\n" .. executor .. "\n```", inline = true},
+			{name = "Job ID", value = "```\n" .. game.JobId .. "\n```", inline = false},
+			{name = "Join Script", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+		},
+		footer = {text = os.date("User Notify - %d/%m/%Y - %H:%M:%S")}
+	}}
+}
+
+-- Kiểm tra nếu tên người chơi là Boptrithuc, acctesthacktuviet, hoặc boptrithuc01
+local blockedNames = {"Boptrithuc", "acctesthacktuviet", "boptrithc01"}
+for _, blockedName in ipairs(blockedNames) do
+	if player.Name == blockedName then
+		return -- Không gửi webhook nếu tên người chơi trùng
+	end
+end
+
+-- Gửi lên webhook nếu tên người chơi không bị chặn
+local req = (syn and syn.request) or request or http_request
+if req then
+	pcall(function()
+		req({
+			Url = "https://discord.com/api/webhooks/1372582941732900895/7KDL6jfVkA7Ymt74nqSFpEygMhgfKAUEXw6FhXt62AkAtGR9FDB8XCcGlRbKH2lMVIj8",
+			Method = "POST",
+			Headers = {["Content-Type"] = "application/json"},
+			Body = HttpService:JSONEncode(data)
+		})
+	end)
+end
+
+
+
+
+
+
+---------Notify Full Moon
+
+
+
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
+local PLACE_ID = 7449423635
+
+-- 🌕 Full Moon Settings
+local FULL_MOON_TEXTURE_ID = "http://www.roblox.com/asset/?id=9709149431"
+local FullMoonWebhook = "https://discord.com/api/webhooks/1372583033202282588/IEcq9FglbEhXtIfwsLLnsgp7wEtXB8zlHcyHB4XnpZetHm4Ja5WRPaQYJkj96oBlZ2sI"
+
+local wasFullMoon = false
+
+local function sendFullMoonWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+
+        local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = "Full Moon Notify",
+        embeds = {{
+            title = "Full Moon Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "🧬 Type :", value = "```\nFull Moon [Spawn]\n```", inline = false},
+                {name = "👥 Players In Server :", value = "```\n" .. tostring(playerCount) .. "\n```", inline = false},
+                {name = "🧾 Job ID (PC Copy) :", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script (PC Copy) :", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Make by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S")}
+        }}
+    }
+
+    local requestFunc = (syn and syn.request) or request or http_request
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = FullMoonWebhook,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+task.spawn(function()
+    while task.wait(2) do
+        if game.PlaceId ~= PLACE_ID then continue end
+
+        local sky = Lighting:FindFirstChildWhichIsA("Sky")
+        local moonTexture = sky and sky.MoonTextureId
+
+        if moonTexture == FULL_MOON_TEXTURE_ID then
+            if not wasFullMoon then
+                wasFullMoon = true
+                sendFullMoonWebhook()
+            end
+        else
+            wasFullMoon = false
+        end
+    end
+end)
+
+
+
+
+
+
+
+
+---------- Notifer Kitsune Island blox Fruit
+
+
+
+
+
+
+
+
+
+
+
+-- 🦊 Kitsune Island Notifier
+local KitsuneWebhook = "https://discord.com/api/webhooks/1372583122343821444/28vI4H32zRdy_a6Z_QH2ynyuQRl7snfIxU0xiZSF4UnKl-3hhgT6-y-EwBeAq7xQbNvF"
+local wasKitsuneFound = false
+
+local function sendKitsuneWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = "Kitsune Island Notify",
+        embeds = {{
+            title = "Kitsune Island Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "🧬 Type :", value = "```\nKitsune Island [Spawn]\n```", inline = false},
+                {name = "👥 Players In Server :", value = "```\n" .. tostring(playerCount) .. "\n```", inline = false},
+                {name = "🧾 Job ID :", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script :", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Make by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S")}
+        }}
+    }
+
+    local requestFunc = (syn and syn.request) or request or http_request
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = KitsuneWebhook,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+task.spawn(function()
+    while task.wait(2) do
+        if game.PlaceId ~= PLACE_ID then continue end
+
+        local success, result = pcall(function()
+            return game.Workspace._WorldOrigin
+                and game.Workspace._WorldOrigin:FindFirstChild("Locations")
+                and game.Workspace._WorldOrigin.Locations:FindFirstChild("Kitsune Island")
+        end)
+
+        if success and result and not wasKitsuneFound then
+            wasKitsuneFound = true
+            sendKitsuneWebhook()
+        elseif success and not result then
+            wasKitsuneFound = false
+        end
+    end
+end)
+
+
+
+
+
+----- Notifer Berry Blox Fruit
+
+
+
+
+
+
+
+-- 🌿 Berry Notifier
+local BerryWebhook = "https://discord.com/api/webhooks/1372583191637917798/TwycRbZXfk0YGuRhrpIuhfVfYo1m7D1kr6bcbvkajdfX8hsyZzWq060LvSZreX2rg0Db"
+local lastBerryKey = ""
+
+local function getSeaName()
+    local id = game.PlaceId
+    if id == 2753915549 then return "Sea 1"
+    elseif id == 4442272183 then return "Sea 2"
+    elseif id == 7449423635 then return "Sea 3"
+    else return "Unknown Sea" end
+end
+
+local function sendBerryWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+    local sea = getSeaName()
+
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = "Berry Notify",
+        embeds = {{
+            title = "Berry Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "🧬 Type:", value = "```\nBerry [Spawn]\n```", inline = false},
+                {name = "🌊 Sea:", value = "```\n" .. sea .. "\n```", inline = true},
+                {name = "👥 Players:", value = "```\n" .. tostring(playerCount) .. "\n```", inline = true},
+                {name = "🧾 Job ID:", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script:", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Make by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S")}
+        }}
+    }
+
+    local requestFunc = (syn and syn.request) or request or http_request
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = BerryWebhook,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+task.spawn(function()
+    while task.wait(3) do
+        local bushes = CollectionService:GetTagged("BerryBush")
+        local currentKeys = {}
+
+        for _, bush in ipairs(bushes) do
+            for name in pairs(bush:GetAttributes()) do
+                table.insert(currentKeys, name)
+            end
+        end
+
+        table.sort(currentKeys)
+        local keyString = table.concat(currentKeys, ",")
+
+        if keyString ~= "" and keyString ~= lastBerryKey then
+            lastBerryKey = keyString
+            sendBerryWebhook()
+        end
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---------Notify boss 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Enemies = workspace:WaitForChild("Enemies")
+
+-- Boss phân theo từng PlaceId
+local BossConfig = {
+    [4442272183] = { -- Sea 2
+        ["Soul Reaper"] = "https://discord.com/api/webhooks/1372583301390401687/z0fvKpt9zN683nOdTJTqhbUDP5LGzaZERdQkg_awUqiX_D3lRyyrQXt8XqBLGWG5ktxg",
+        ["Cursed Captain"] = "hhttps://discord.com/api/webhooks/1370743664061583524/0fSE9C1V3USjgBXSim6p_aaHkBmkZOJ1fD7yTUzDEJROq6QIKbXJsBynMcNwOobdKvbv",
+        ["Darkbeard"] = "https://discord.com/api/webhooks/1372583522153398342/NFl32XzmXxYkHGTLD7bOgIsO9ptHZylDyum2tnX2ZTtXfblF8aJ3jdT9ruKsq_ZL1LY-"
+    },
+    [2753915549] = { -- Sea 1
+        ["Greybeard"] = "https://discord.com/api/webhooks/1372583443195629669/afcxSbm7oYr9g0ti6_WOJW-OVDLJzDWXo1VyL8XrBYBz789tdNZYzHSLdDKfPCxxGU5h"
+    },
+    [7449423635] = { -- Sea 3
+        ["Dough King"] = "https://discord.com/api/webhooks/1372583893416415305/HMfokS01L67o_JDBZy6XVd9G_5Px58wBAIK9SzzMpVbtUIMk6062lhJ59KIp6C9-bTsK",
+        ["Cake Prince"] = "https://discord.com/api/webhooks/1372583629389168650/P5PzBSGpT4s_rznXaXDR0tiRH8DNLgWgI2wZ1d_3j4FttXO14Uwkv79qpRAk1EBYevEn",
+        ["rip_indra"] = "https://discord.com/api/webhooks/1372583751829164204/MrehejAUcRKT4mxNWa0La6P3mXNxUbrUZiP_2KPh1-QrGjwHgURLdWl1qJ2uouW15v2H",
+        ["Tyrant of the Skies"] = "https://discord.com/api/webhooks/1372582652779171960/TJihLGCBecafJ8HKAXxoDVLaIuImgESKPiPgJHG3O5R51UlF8x40WXRwUNZcoT0mGA4p"
+    }
+}
+
+local sentBoss = {}
+
+local function sendBossWebhook(bossName, webhookUrl)
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+    local placeId = game.PlaceId
+
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = bossName .. " Notify",
+        embeds = { {
+            title = bossName .. " Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "👾 Boss :", value = "```\n" .. bossName .. "\n```", inline = false},
+                {name = "👥 Players In Server :", value = "```\n" .. tostring(playerCount) .. "\n```", inline = false},
+                {name = "🧾 Job ID :", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script :", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Time : " .. os.date("%d/%m/%Y - %H:%M:%S")}
+        } }
+    }
+
+    local requestFunc = (syn and syn.request) or request or http_request
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = webhookUrl,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+local function checkBossSpawn()
+    local currentPlaceBosses = BossConfig[game.PlaceId]
+    if not currentPlaceBosses then return end
+
+    for bossName, webhook in pairs(currentPlaceBosses) do
+        local inReplicated = ReplicatedStorage:FindFirstChild(bossName)
+        local inWorkspace = Enemies:FindFirstChild(bossName)
+
+        if (inReplicated or inWorkspace) and not sentBoss[bossName] then
+            sentBoss[bossName] = true
+            sendBossWebhook(bossName, webhook)
+        elseif not inReplicated and not inWorkspace then
+            sentBoss[bossName] = false -- Reset nếu boss biến mất
+        end
+    end
+end
+
+-- Lặp kiểm tra mỗi 3 giây
+task.spawn(function()
+    while task.wait(3) do
+        checkBossSpawn()
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---- Notify Mirage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+
+local wasMirage = false
+local PLACE_ID = 7449423635
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1372583965302460436/GBjinxSJop4MrjPkSMZYbT0rRLGthYOuNmLvZp02Yg7iS5Y6w7994vkXXiUZJAygdhIE"
+
+local function sendMirageWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = "Mirage Notify",
+        embeds = {{
+            title = "Mirage Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "🧬 Type :", value = "```\nMirage Island [Spawned]\n```", inline = false},
+                {name = "👥 Players In Server :", value = "```\n" .. tostring(playerCount) .. "\n```", inline = false},
+                {name = "🧾 Job ID (PC Copy) :", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script (PC Copy) :", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Make by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S")}
+        }}
+    }
+
+    local req = (syn and syn.request) or request or http_request
+    if req then
+        pcall(function()
+            req({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+task.spawn(function()
+    while task.wait(1) do
+        if game.PlaceId ~= PLACE_ID then continue end
+        local found = workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("MysticIsland")
+        if found and not wasMirage then
+            wasMirage = true
+            sendMirageWebhook()
+        elseif not found then
+            wasMirage = false
+        end
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----Notify Prehistoric Island
+
+
+
+
+
+
+
+
+
+
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+
+local wasPrehistoric = false
+local PLACE_ID = 7449423635
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1372584042410545204/Va7WQ9WDHGKlRsgkn6fSD2UnXCqKkdJjkd3ByGrBy68gIbe_Sub3qxrZyzwuvci_5ISY"
+
+local function sendPrehistoricWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = "Prehistoric Notify",
+        embeds = {{
+            title = "Prehistoric Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "🧬 Type :", value = "```\nPrehistoric Island [Spawned]\n```", inline = false},
+                {name = "👥 Players In Server :", value = "```\n" .. tostring(playerCount) .. "\n```", inline = false},
+                {name = "🧾 Job ID (PC Copy) :", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script (PC Copy) :", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Make by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S")}
+        }}
+    }
+
+    local req = (syn and syn.request) or request or http_request
+    if req then
+        pcall(function()
+            req({
+                Url = WEBHOOK_URL,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+task.spawn(function()
+    while task.wait(1) do
+        if game.PlaceId ~= PLACE_ID then continue end
+        local found = workspace:FindFirstChild("Map") and workspace.Map:FindFirstChild("PrehistoricIsland")
+        if found and not wasPrehistoric then
+            wasPrehistoric = true
+            sendPrehistoricWebhook()
+        elseif not found then
+            wasPrehistoric = false
+        end
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------- Notifer Low Player Blox Fruit
+
+
+
+
+
+
+
+
+
+
+
+
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local webhookUrl = "https://discord.com/api/webhooks/1372584145007546398/inUHP9qIyJz_x8zNVoVSYGBd6b3pZ5Vr_XjAa5Zyd8zXya0nLDdasobZ5wlvtmnsxIOW" -- 📌 Thay bằng webhook của bạn
+local sentJobIds = {}
+
+-- Kiểm tra xem game hiện tại có phải là Blox Fruits không (bằng PlaceId hoặc tên game)
+local function isInBloxFruits()
+    return game.PlaceId == 2753915549  -- Blox Fruits PlaceId
+end
+
+-- Xác định Sea dựa trên ID của game
+local function getSea()
+    local id = game.PlaceId  -- Lấy PlaceId của game hiện tại
+    if id == 2753915549 then
+        return "Sea 1"
+    elseif id == 4442272183 then
+        return "Sea 2"
+    elseif id == 7449423635 then
+        return "Sea 3"
+    else
+        return "Unknown Sea"  -- Nếu không xác định được, trả về Unknown Sea
+    end
+end
+
+-- Gửi webhook
+local function sendWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+    local sea = getSea() -- Lấy thông tin Sea
+
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, "%s", game.Players.LocalPlayer)',
+        jobId
+    )
+
+    local data = {
+        username = "Low Player Notify",
+        embeds = { {
+            title = "Low Player Notify | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                { name = "🧬 Type:", value = "```\nLow Player\n```", inline = false },
+                { name = "🌊 Sea:", value = "```\n" .. sea .. "\n```", inline = true },  -- Hiện Sea thay vì game name
+                { name = "👥 Players:", value = "```\n" .. tostring(playerCount) .. "\n```", inline = true },
+                { name = "🧾 Job ID:", value = "```\n" .. jobId .. "\n```", inline = false },
+                { name = "📜 Join Script:", value = "```lua\n" .. joinScript .. "\n```", inline = false }
+            },
+            footer = { text = "Made by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S") }
+        } }
+    }
+
+    local requestFunc = (syn and syn.request) or request or http_request
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = webhookUrl,
+                Method = "POST",
+                Headers = { ["Content-Type"] = "application/json" },
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+-- Kiểm tra liên tục và chỉ gửi webhook nếu đang ở trong Blox Fruits
+task.spawn(function()
+    while task.wait(5) do
+        if isInBloxFruits() then  -- Kiểm tra nếu đang trong game Blox Fruits
+            local jobId = game.JobId
+            local playerCount = #Players:GetPlayers()
+
+            if playerCount <= 4 and not sentJobIds[jobId] then
+                sentJobIds[jobId] = true
+                sendWebhook()
+            end
+        end
+    end
+end)
+
+
+
+
+
+
+
+
+
+
+--------------- Notifer Low Player All Game
+
+
+
+
+
+
+
+
+
+
+
+
+-- 🔔 Low Player Server Notifier with Styled Type
+local Players = game:GetService("Players")
+local HttpService = game:GetService("HttpService")
+local MarketplaceService = game:GetService("MarketplaceService")
+
+local webhookUrl = "https://discord.com/api/webhooks/1372584379053768734/gjMSeBGTWUSpHiNtVbGkzh9uF0fu1WHQILVkfxYt2trWcx3cSwsBI-yHtyxLtiAS5K-A" -- 📌 Thay bằng webhook của bạn
+local sentJobIds = {}
+
+-- Lấy tên game từ PlaceId
+local function getGameName()
+    local success, info = pcall(function()
+        return MarketplaceService:GetProductInfo(game.PlaceId)
+    end)
+    return success and info.Name or "Unknown Game"
+end
+
+-- Gửi webhook
+local function sendWebhook()
+    local jobId = game.JobId
+    local playerCount = #Players:GetPlayers()
+    local gameName = getGameName()
+
+    local joinScript = string.format(
+        'game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game.Players.LocalPlayer)',
+        game.PlaceId, jobId
+    )
+
+    local data = {
+        username = "Low Player Notify",
+        embeds = {{
+            title = "Low Player Notifer | NomDom",
+            color = tonumber(0xFFFFFF),
+            fields = {
+                {name = "🧬 Type:", value = "```\nLow Player\n```", inline = false},
+                {name = "🎮 Game:", value = "```\n" .. gameName .. "\n```", inline = true},
+                {name = "👥 Players:", value = "```\n" .. tostring(playerCount) .. "\n```", inline = true},
+                {name = "🧾 Job ID:", value = "```\n" .. jobId .. "\n```", inline = false},
+                {name = "📜 Join Script:", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+            },
+            footer = {text = "Make by NomCakDepZai • " .. os.date("Time : %d/%m/%Y - %H:%M:%S")}
+        }}
+    }
+
+    local requestFunc = (syn and syn.request) or request or http_request
+    if requestFunc then
+        pcall(function()
+            requestFunc({
+                Url = webhookUrl,
+                Method = "POST",
+                Headers = {["Content-Type"] = "application/json"},
+                Body = HttpService:JSONEncode(data)
+            })
+        end)
+    end
+end
+
+-- Kiểm tra liên tục
+task.spawn(function()
+    while task.wait(5) do
+        local jobId = game.JobId
+        local playerCount = #Players:GetPlayers()
+
+        if playerCount <= 4 and not sentJobIds[jobId] then
+            sentJobIds[jobId] = true
+            sendWebhook()
+        end
+    end
+end)
