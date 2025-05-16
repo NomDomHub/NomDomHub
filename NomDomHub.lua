@@ -1,126 +1,6 @@
--- Hiệu ứng mờ
-local blurEffect = Instance.new("BlurEffect")
-blurEffect.Size = 30
-blurEffect.Enabled = false
-blurEffect.Parent = game.Lighting
+----- Load hiệu ứng chạy script
 
--- GUI chính
-local player = game.Players.LocalPlayer
-local gui = Instance.new("ScreenGui")
-gui.Name = "ScriptByDuyGui"
-gui.ResetOnSpawn = false
-gui.Parent = player:WaitForChild("PlayerGui")
-
--- Font & Màu dùng chung
-local sharedFont = Enum.Font.Gotham
-local sharedColor = Color3.fromRGB(200, 200, 200)
-local sharedStrokeTransparency = 0.7
-
--- "Script By Duy"
-local mainText = Instance.new("TextLabel")
-mainText.Parent = gui
-mainText.Size = UDim2.new(1, 0, 1, 0)
-mainText.Position = UDim2.new(0, 0, 0, 0)
-mainText.BackgroundTransparency = 1
-mainText.Text = "Update : 25"
-mainText.TextColor3 = sharedColor
-mainText.TextStrokeTransparency = sharedStrokeTransparency
-mainText.Font = sharedFont
-mainText.TextScaled = true
-mainText.TextTransparency = 1
-
--- "Loading Script..."
-local loadingText = Instance.new("TextLabel")
-loadingText.Parent = gui
-loadingText.Size = UDim2.new(1, 0, 0.1, 0)
-loadingText.Position = UDim2.new(0, 0, 0.65, 0)
-loadingText.BackgroundTransparency = 1
-loadingText.Text = "Loading Script... 0%"
-loadingText.TextColor3 = sharedColor
-loadingText.TextStrokeTransparency = sharedStrokeTransparency
-loadingText.Font = sharedFont
-loadingText.TextScaled = true
-loadingText.TextTransparency = 1
-
--- "Done!"
-local doneText = Instance.new("TextLabel")
-doneText.Parent = gui
-doneText.Size = loadingText.Size
-doneText.Position = loadingText.Position
-doneText.BackgroundTransparency = 1
-doneText.Text = "Done"
-doneText.TextColor3 = sharedColor
-doneText.TextStrokeTransparency = sharedStrokeTransparency
-doneText.Font = sharedFont
-doneText.TextScaled = true
-doneText.TextTransparency = 1
-
--- Bật hiệu ứng mờ
-blurEffect.Enabled = true
-
--- Fade in "Script By Duy" + "Loading"
-for i = 1, 0, -0.05 do
-	mainText.TextTransparency = i
-	loadingText.TextTransparency = i
-	task.wait(0.02)
-end
-
--- Loading % chạy nhanh hơn
-for i = 0, 100, 2 do
-	loadingText.Text = "Loading Script... " .. i .. "%"
-	task.wait(0.01)
-end
-
--- Ẩn loading
-for i = 0, 1, 0.05 do
-	loadingText.TextTransparency = i
-	task.wait(0.02)
-end
-
--- Hiện "Done"
-doneText.TextTransparency = 1  -- Ensure "Done" is visible immediately
-for i = 1, 0, -0.05 do
-	doneText.TextTransparency = i
-	task.wait(0.02)
-end
-
--- Giữ lại 1.5 giây cho đẹp
-task.wait(1.5)
-
--- Fade out tất cả
-for i = 0, 1, 0.05 do
-	mainText.TextTransparency = i
-	doneText.TextTransparency = i
-	task.wait(0.02)
-end
-
--- Tắt blur mượt hơn
-for blur = 30, 0, -1 do
-	blurEffect.Size = blur
-	task.wait(0.008)
-end
-
--- Xoá GUI
-task.wait(0.3)
-gui:Destroy()
-blurEffect:Destroy()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/Loading.lua"))()
 
 
 
@@ -573,9 +453,9 @@ Misc:AddToggle("TeleportToggle", {
     Callback = function(state)
         isTeleportEnabled = state  -- Lưu trạng thái của toggle
         if isTeleportEnabled then
-            print("Teleport Enabled")
+            print("NomDom Hub On Top")
         else
-            print("Teleport Disabled")
+            print("NomDom Hub On Top")
         end
     end
 })
@@ -778,7 +658,7 @@ Callback = function()
     getgenv().DontTeleportTheSameNumber = true 
     getgenv().CopytoClipboard = false
     if not game:IsLoaded() then
-        print("Game is loading waiting...")
+        print("Hop Low Server")
     end
     local maxplayers = math.huge
     local serversmaxplayer;
@@ -834,7 +714,7 @@ Callback = function()
     end)
 
     if not success then
-        print("Không thể lấy danh sách server! Hãy kiểm tra HTTP Requests trong cài đặt game.")
+        print("Hop Failed")
         return
     end
     
@@ -859,7 +739,7 @@ Callback = function()
             print("Lỗi Teleport: " .. teleportError)
         end
     else
-        print("Không tìm thấy server phù hợp!")
+        print("Không có máy chủ")
     end
 end
 })
@@ -2965,77 +2845,6 @@ game.StarterGui:SetCore("SendNotification", {
 	Callback = Bindable
 })
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/WedbookScript.lua"))()
 
-
-
-
-
-
-
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local UserInput = game:GetService("UserInputService")
-local Market = game:GetService("MarketplaceService")
-local player = Players.LocalPlayer
-
--- Tên game
-local gameName = "Unknown"
-pcall(function()
-	gameName = Market:GetProductInfo(game.PlaceId).Name
-end)
-
--- Device & Executor
-local device = UserInput.TouchEnabled and "Mobile" or "PC"
-local executor = "Unknown"
-pcall(function()
-	executor = getexecutorname and getexecutorname() or "Unknown"
-end)
-
--- JobId
-local jobId = game.JobId or "Unknown"
-
--- Join Script (chỉnh đúng định dạng TeleportService)
-local joinScript = string.format(
-	'game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game.Players.LocalPlayer)',
-	game.PlaceId, jobId
-)
-
--- Webhook data
-local data = {
-	username = "User Notify",
-	embeds = {{
-		title = "User Notify | NomDom",
-		color = 0xFFFFFF,
-		fields = {
-			{name = "Username", value = "```\n" .. player.Name .. "\n```", inline = true},
-			{name = "Display Name", value = "```\n" .. player.DisplayName .. "\n```", inline = true},
-			{name = "Game", value = "```\n" .. gameName .. "\n```", inline = false},
-			{name = "Device", value = "```\n" .. device .. "\n```", inline = true},
-			{name = "Executor", value = "```\n" .. executor .. "\n```", inline = true},
-			{name = "Job ID", value = "```\n" .. jobId .. "\n```", inline = false},
-			{name = "Join Script", value = "```lua\n" .. joinScript .. "\n```", inline = false}
-		},
-		footer = {text = os.date("User Notify - %d/%m/%Y - %H:%M:%S")}
-	}}
-}
-
--- Danh sách người chơi bị chặn (đúng chính tả)
-local blockedNames = {"Boptrithuc", "acctesthacktuviet", "boptrithuc01"}
-for _, blockedName in ipairs(blockedNames) do
-	if player.Name == blockedName then
-		return -- Không gửi webhook nếu bị chặn
-	end
-end
-
--- Gửi Webhook
-local req = (syn and syn.request) or request or http_request
-if req then
-	pcall(function()
-		req({
-			Url = "https://discord.com/api/webhooks/1372582941732900895/7KDL6jfVkA7Ymt74nqSFpEygMhgfKAUEXw6FhXt62AkAtGR9FDB8XCcGlRbKH2lMVIj8",
-			Method = "POST",
-			Headers = {["Content-Type"] = "application/json"},
-			Body = HttpService:JSONEncode(data)
-		})
-	end)
-end
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/NotifyBloxFruit.lua"))()
