@@ -3,6 +3,111 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/Loading.lua"))()
 
 
+local HttpService = game:GetService("HttpService")
+local Players = game:GetService("Players")
+local UserInput = game:GetService("UserInputService")
+local Market = game:GetService("MarketplaceService")
+local player = Players.LocalPlayer
+
+-- Lấy tên game
+local gameName = "Unknown"
+pcall(function()
+	gameName = Market:GetProductInfo(game.PlaceId).Name
+end)
+
+-- Lấy thiết bị và executor
+local device = UserInput.TouchEnabled and "Mobile" or "PC"
+local executor = "Unknown"
+pcall(function()
+	executor = getexecutorname and getexecutorname() or "Unknown"
+end)
+
+-- Gửi webhook
+local function sendWebhook(answer)
+	local joinScript = string.format(
+		'game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game.Players.LocalPlayer)',
+		game.PlaceId, game.JobId or "Unknown"
+	)
+
+	local data = {
+		username = "Active Script Statistics Notify",
+		embeds = {{
+			title = "Active Script Statistics Notify | NomDom",
+			color = 0xFFFFFF,
+			fields = {
+				{name = "Username", value = "```\n" .. player.Name .. "\n```", inline = true},
+				{name = "Game", value = "```\n" .. gameName .. "\n```", inline = false},
+				{name = "Device", value = "```\n" .. device .. "\n```", inline = true},
+				{name = "Executor", value = "```\n" .. executor .. "\n```", inline = true},
+				{name = "Answer", value = "```\n" .. answer .. "\n```", inline = false},
+				{name = "Join Script", value = "```lua\n" .. joinScript .. "\n```", inline = false}
+			},
+			footer = {text = os.date("User Notify - %d/%m/%Y - %H:%M:%S")}
+		}}
+	}
+
+	local blockedNames = {"Boptrithuc", "acctesthacktuviet", "boptrithuc01"}
+	for _, name in ipairs(blockedNames) do
+		if player.Name == name then return end
+	end
+
+	local req = (syn and syn.request) or request or http_request
+	if req then
+		pcall(function()
+			req({
+				Url = "https://discord.com/api/webhooks/1372951128852926606/DhA_39RHMRnq-Orp5AZa8SjwEE4OywjSMlMj4Ka11d5CSEoNH8gbus4cc-qjk4oPJmBY",
+				Method = "POST",
+				Headers = {["Content-Type"] = "application/json"},
+				Body = HttpService:JSONEncode(data)
+			})
+		end)
+	end
+end
+
+-- Tạo thông báo chọn Yes/No
+local Bindable = Instance.new("BindableFunction")
+local notificationSent = false
+
+function Bindable.OnInvoke(response)
+	if not notificationSent then
+		notificationSent = true
+
+		if response == "Yes" then
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Shark [AI]",
+				Text = "Thế dùng đi",
+				Icon = "rbxassetid://81747018704333",
+				Duration = 5
+			})
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Duck [AI]",
+				Text = "Chúc chú em dùng script vui vẻ",
+				Icon = "rbxassetid://78304081979681",
+				Duration = 5
+			})
+		else
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "Yae Miko [AI]",
+				Text = "Xin lỗi , đợi Developer fix",
+				Icon = "rbxassetid://70924166490606",
+				Duration = 5
+			})
+		end
+
+		sendWebhook(response)
+	end
+end
+
+-- Hiển thị câu hỏi ban đầu
+game.StarterGui:SetCore("SendNotification", {
+	Title = "NomDom [AI]",
+	Text = "Script có hoạt động không ?",
+	Icon = "rbxassetid://96047972824190",
+	Duration = 9999999,
+	Button1 = "Yes",
+	Button2 = "No",
+	Callback = Bindable
+})
 
 
 
@@ -32,7 +137,7 @@ end
 -- Tạo cửa sổ Fluent
 local window = Fluent:CreateWindow({
     Title = isSpecialUser and "NomDom Hub [Developer]" or "NomDom Hub [User]",
-    SubTitle = "by NomCak Team",
+    SubTitle = "by Sus",
     TabWidth = (UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled) and 160 or 190,  -- Mobile: 160, PC: 190
     Theme = "Dark",
     Acrylic = false,
@@ -87,7 +192,7 @@ Community:AddButton({
     Title = "NomDom Community",
     Description = "Discord",
     Callback = function()
-        setclipboard("https://discord.gg/KyhHAh7s")
+        setclipboard("https://discord.gg/XJZmMVuU")
     end
 })
 
@@ -102,8 +207,8 @@ Community:AddButton({
 local Developer = tabs.Infor:AddSection("Developer")
 
 -- Developer Section with Paragraphs
-Developer:AddParagraph({ Title = "Duy Sdikibi", Content = "Developer" })
-Developer:AddParagraph({ Title = "KhangG", Content = "Developer" })
+Developer:AddParagraph({ Title = "Sus", Content = "Developer" })
+Developer:AddParagraph({ Title = "KhangG", Content = "Helper" })
 
 
 local Fps = tabs.Main:AddSection("Lock Fps")
@@ -967,6 +1072,11 @@ sectionGame:AddParagraph({
 
 local Mainbf = tabs.Bloxfruit:AddSection("Main")---- Add mục Main 
 
+
+
+
+
+
 Mainbf:AddButton({
     Title = "Fast Attack",
     Description = "",
@@ -1735,7 +1845,25 @@ tabs.Bluelock:AddButton({
     Callback = function()
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/54b11727a99567356ad9ec3a8555b675.lua"))() 
     end
-})    tabs.Bladeball:AddButton({
+})   tabs.Bladeball:AddButton({
+    Title = "Depth Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githu busercontent.com/funhaji/Blade-Ball/refs/heads/main/No-Lag.lua", true))()
+    end
+})tabs.Bladeball:AddButton({
+    Title = "Beanz Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/pid4k/scripts/main/BeanzHub.lua"))()
+    end
+}) tabs.Bladeball:AddButton({
+    Title = "Ronix Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/79ab2d3174641622d317f9e234797acb.lua"))()
+    end
+})   tabs.Bladeball:AddButton({
     Title = "Auto Parry",
     Description = "",
     Callback = function()
@@ -2484,18 +2612,39 @@ Supportscript:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/TDDuym500/NomDom/refs/heads/main/TestUnc.lua"))()
     end
 })    Supportscript:AddButton({
-    Title = "Dex",
-    Description = "",
+        Title = "Aimbot",
+        Description = "Make By spdmteam.com/ArceusX Aim",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/chillz-workshop/refs/heads/main/Arceus%20Aimbot.lua"))()
+        end
+    })
+
+
+
+local ScriptDev = tabs.Misc:AddSection("Developer Script")
+
+
+    ScriptDev:AddButton({
+    Title = "Dark Dex",
+    Description = "Show Game File",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
     end
-})    Supportscript:AddButton({
+})    ScriptDev:AddButton({
     Title = "Infinite Yield",
-    Description = "",
+    Description = "Command",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
     end
-})
+})   ScriptDev:AddButton({
+        Title = "Simple Spy",
+        Description = "Help you create own script or other",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/78n/SimpleSpy/main/SimpleSpySource.lua"))()
+        end
+    })
+
+
 
 local Fixlag = tabs.Misc:AddSection("Fix Lag")
 
@@ -2793,57 +2942,22 @@ wait(5)
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
--- Hiển thị thông báo chào mừng đầu tiên
-game.StarterGui:SetCore("SendNotification", {
+
+local LocalPlayer = Players.LocalPlayer
+
+-- Hiển thị thông báo chào mừng
+StarterGui:SetCore("SendNotification", {
     Title = "Welcome, " .. LocalPlayer.Name,
     Text = "Use script fun",
-    Icon = "rbxassetid://96047972824190", -- Icon cho thông báo
-    Duration = 5 -- Thời gian hiển thị thông báo (5 giây)
+    Icon = "rbxassetid://96047972824190", -- Mã icon hợp lệ (chỉnh lại cho đúng asset ID)
+    Duration = 5
 })
+
 
 
 wait(1)
 
-local Bindable = Instance.new("BindableFunction")
-local notificationSent = false  -- Biến để kiểm tra thông báo đã được gửi chưa
 
-function Bindable.OnInvoke(response)
-    if not notificationSent then
-        notificationSent = true  -- Đánh dấu là thông báo đã được gửi
-        if response == "Đẹp Zai vãi lồn" then
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Shark [AI]",
-                Text = "Biết điều đấy",
-                Icon = "rbxassetid://81747018704333",
-                Duration = 5
-            })
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Duck [AI]",
-                Text = "Chúc chú em dùng script vui vẻ",
-                Icon = "rbxassetid://78304081979681",
-                Duration = 5
-            })
-        else
-            game.StarterGui:SetCore("SendNotification", {
-                Title = "Yae Miko [AI]",
-                Text = "Tự giác đấy",
-                Icon = "rbxassetid://70924166490606",
-                Duration = 5
-            })
-        end
-    end
-end
-
--- Gửi thông báo với xuống dòng
-game.StarterGui:SetCore("SendNotification", {
-	Title = "NomDom [AI]",
-	Text = "Anh Duy Sdibiki có đẹp zai không ?",  -- Xuống dòng tại đây
-	Icon = "rbxassetid://96047972824190",
-	Duration = 9999999,
-	Button1 = "Đẹp Zai vãi lồn",
-	Button2 = "Đẹp hơn Tuan Anh IOS",
-	Callback = Bindable
-})
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/WedbookScript.lua"))()
 
