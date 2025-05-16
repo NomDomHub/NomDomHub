@@ -1410,48 +1410,260 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepza
 local Kaitunbf = tabs.Bloxfruit:AddSection("Kaitun")
 
 Kaitunbf:AddButton({
-    Title = "Xero Hub ( Click to copy cofig and script )",
+    Title = "Xero Hub",
     Description = "Need Key",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/9ei9hx96")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/9ei9hx96",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        -- Max level, godhuman, cdk, sgt
+script_key = "" -- premium only, u can leave it blank if ur not
+getgenv().Shutdown = false -- Turn on if u are farming bulk accounts
+getgenv().Configs = {
+    ["Team"] = "Marines",
+    ["FPS Boost"] = {
+        ["Enable"] = true,
+        ["FPS Cap"] = 30,
+    },
+    ["Farm Boss Drops"] = {
+        ["Enable"] = false,
+        ["When x2 Exp Expired"] = false
+    },
+    ["Hop"] = { -- premium only
+        ["Enable"] = true,
+        ["Hop Find Tushita"] = true,
+        ["Hop Find Valkyrie Helm"] = true,
+        ["Hop Find Mirror Fractal"] = true,
+        ["Hop Find Darkbeard"] = true, -- For skull guitar
+        ["Hop Find Soul Reaper"] = true, -- For CDK
+        ["Hop Find Mirage"] = true, -- For pull lever
+        ["Find Fruit"] = true, -- Will find 1m+ fruit to unlock swan door to access third sea
+    },
+    ["Farm Mastery"] = {
+        ["Enable"] = true,
+        ["Farm Mastery Weapons"] = {"Sword", "Gun", "Blox Fruit"}, -- Blox Fruit, Gun (left -> right: High -> Low Priority)
+        ["Swords To Farm"] = {"Cursed Dual Katana"},
+        ["Guns To Farm"] = {"Skull Guitar"},
+        ["Mastery Health (%)"] = 40 -- For Blox Fruit, Gun
+    },
+    ["Farm Config"] = {
+        ["First Farm At Sky"] = true,
+        ["Farm Bone Get x2 Exp"] = true
+    },
+    ["Trackstat"] = {
+        ["Enable"] = false,
+        ["Key"] = "", -- Get from xerohub.click
+        ["Device"] = "test" -- u can put any name here
+    },
+    ["Auto Spawn rip_indra"] = true,
+    ["Auto Spawn Dough King"] = true,
+    ["Auto Pull Lever"] = true,
+    ["Auto Collect Berry"] = true,
+    ["Auto Evo Race"] = true,
+    ["Awaken Fruit"] = true,
+    ["Rainbow Haki"] = true,
+    ["Hop Player Near"] = true,
+    ["Skull Guitar"] = true,
+    ["Cursed Dual Katana"] = true,
+    ["Switch Melee"] = true,
+    ["Eat Fruit"] = "", -- leave blank for none, put the fruit name like this example: Smoke Fruit, T-Rex Fruit, ...
+    ["Snipe Fruit"] = "", -- leave blank for none, put the fruit name like this example: Smoke Fruit, T-Rex Fruit, ...
+    ["Lock Fragment"] = 30000,
+    ["Buy Stuffs"] = true -- buso, geppo, soru, ken haki, ...
+}
+repeat task.wait() pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/kaitun.lua"))() end) until getgenv().Check_Execute
     end
 })    Kaitunbf:AddButton({
-    Title = "RoyX Hub ( Click to copy cofig and script )",
+    Title = "RoyX Hub",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/h66npw83")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/h66npw83",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })   
+        getgenv().ConfigsKaitun = {
+	["Safe Mode"] = false, -- Will be pass all anti cheat (but slow farm)
+
+	["Berry Collect"] = true,
+	["Melee"] = {
+		["Death Step"] = true,
+		["Electric Claw"] = true,
+		["Dragon Talon"] = true,
+		["Sharkman Karate"] = true,
+		["Superhuman"] = true,
+		["God Human"] = true,
+	},
+
+	["Sword"] = {
+		-- : World 1
+		["Saber"] = true,
+		["Pole"] = false,
+		-- : World 2
+		["Midnight Blade"] = true,
+		["Shisui"] = true,
+		["Saddi"] = true,
+		["Wando"] = true,
+		["Rengoku"] = true,
+		["True Triple Katana"] = true,
+		-- : World 3
+		["Yama"] = true,
+		["Tushita"] = true,
+		["Canvander"] = true,
+		["Buddy Sword"] = true,
+		["Twin Hooks"] = true,
+		["Hallow Scythe"] = true,
+		["Cursed Dual Katana"] = true,
+	},
+
+	["Gun"] = {
+		-- : World 2
+		["Kabucha"] = true,
+		-- : World 3
+		["Venom Bow"] = true,
+		["Skull Guitar"] = true,
+	},
+
+	["Mastery"] = {
+		["Melee"] = true,
+		["Sword"] = true,
+		["Devil Fruits"] = true,
+
+		["Configs"] = {
+			["Selected All Sword"] = true,
+			["Select Sword"] = {
+				"Saber",
+				"Cursed Dual Katana",
+				"Shark Anchor"
+			},
+		}
+	},
+
+	["Race"] = {
+		["v2"] = true,
+		["v3"] = true,
+		["Locked"] = {
+			["Mink"] = true,
+			["Human"] = true,
+			["Skypiea"] = true,
+			["Fishman"] = true,
+		},
+	},
+
+	["Fruit"] = {
+		["Main Fruit"] = {"Dough-Dough"},
+		["Sec Fruit"] = {"Flame-Flame", "Ice-Ice", "Quake-Quake", "Light-Light", "Dark-Dark", "Spider-Spider", "Rumble-Rumble", "Magma-Magma", "Buddha-Buddha"},
+		["Safe Fruit"] = {
+			"Dough-Dough",
+			"Dragon-Dragon"
+		},
+		["Not Open Door Fruit"] = {
+		}
+	},
+
+	["Quest"] = {
+		["Sea3Hop"] = true,
+		
+		["Rainbow Haki"] = true,
+		["Pull Lever"] = true,
+		["Musketeer Hat"] = true,
+		["Dough Mirror"] = true,
+		["Shark Anchor"] = {
+			["Enable"] = true,
+			["Level"] = 2100, -- Level Should More Than This Will Do
+			["MaxMoney"] = 25_000_000,
+			["MinMoney"] = 22_000_000,
+		},
+	},
+
+	["Currency"] = {
+		["Lock Fragment"] = 30_000,
+	},
+
+	["Performance"] = {
+		["White Screen"] = false,
+		["Booster FPS"] = false,
+		["Lock FPS"] = 240,
+		["AFK Timeout"] = 150,
+		
+		["Add/Accept Friends"] = true,
+		["Auto Chat"] = false,
+	},
+}
+loadstring(game:HttpGet("https://api.realaya.xyz/v1/files/l/73mkp0aqyfo4ypy8hvl0nz10lq49fey5.lua"))() 
     end
 })    Kaitunbf:AddButton({
-    Title = "Simple Hub ( Click to copy cofig and script )",
+    Title = "Simple Hub",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/irnh82ki")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/irnh82ki",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        getgenv().simple_settings = {
+    ["MASTERY"] = { -- Settings related to leveling up weapon or skill mastery
+        ["ACTIVE"] = true, -- Enable or disable mastery leveling (true = enabled, false = disabled)
+        ["METHOD"] = "Half", -- Method for gaining mastery, "Half"[350] or "Full"[600]
+    },
+
+    ["RAID"] = {
+        ["MODE"] = "Legit", -- Legit / KillAura (Legit mode is Mob aura in raid)
+    },
+
+    ["OBJECTIVE"] = { -- Goals for farming and unlocking features
+        ["GODHUMAN"] = true, -- Automatically unlock the "Godhuman" fighting style
+        ["RACE-CONFIGURE"] = {
+            ["RACE"] = {"Human", "Skypiea", "Fishman", "Mink"}, -- List -- "Human", "Skypiea", "Fishman", "Mink"
+            ["RACE-LOCK"] = true, -- Automatically change the character race if not in the list
+            ["RACE-V3"] = true, -- Automatically upgrade character race to V3 if possible Human, Mink, (Fishman, Ghoul, Cyborg) soon
+        },
+        ["FRAGMENT"] = 100000, -- Limit number of fragments to collect
+
+        -- SWORD
+        ["CANVANDER"] = true,
+        ["BUDDY-SWORD"] = true,
+        ["CURSED-DUAL-KATANA"] = true,
+        ["SHARK-ANCHOR"] = true,
+
+        --GUN
+        ["ACIDUM-RIFLE"] = true,
+        ["VENOM-BOW"] = true,
+        ["SOUL-GUITAR"] = true,
+
+        -- AURA
+        ["COLOR-HAKI"] = {"Pure Red","Winter Sky","Snow White"}, -- Aura color to craft
+    },
+
+    ["FRUITPURCHASE"] = true, -- Automatically purchase fruits based on priority list
+    ["PRIORITYFRUIT"] = { -- List of preferred fruits to purchase or eat in order of priority
+        [1] = "Dragon-Dragon",
+        [2] = "Dough-Dough",
+        [3] = "Flame-Flame",
+        [4] = "Rumble-Rumble",
+        [5] = "Human-Human: Buddha",
+        [6] = "Dark-Dark",
+    },
+
+    ["FPSCAP"] = 30, -- Limit the frame rate to optimize performance
+    ["LOWTEXTURE"] = true -- Reduce graphic quality for better performance
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/simple-hubs/contents/refs/heads/main/bloxfruit-kaitan-main.lua"))()
     end
 })    Kaitunbf:AddButton({
-    Title = "Quartyz ( Click to copy cofig and script )",
+    Title = "Quartyz",
     Description = "Need Key",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/gr9j88e8")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/gr9j88e8",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })   
+        getgenv().Mode = "OneClick"
+getgenv().Setting = {
+    ["Team"] = "Pirates", -- Options "Pirates", "Marines"
+    ["FucusOnLevel"] = true,
+    ["Fruits"] = {  -- setting for fruits u want
+        ["Primary"] = { -- if current fruit is not in this list, eat/buy
+            "Dragon-Dragon",
+            -- u can configs add mores/remove and must end with , (comma symbol)
+        },
+        ["Normal"] = { -- it just a normal fruit list
+            "Flame-Flame",
+            -- u can configs add mores/remove and must end with , (comma symbol)
+        }
+        -- run this for get all fruit name `local t={};for _,v in pairs(game.ReplicatedStorage.Remotes.CommF_:InvokeServer("GetFruits"))do table.insert(t,v.Name)end;setclipboard(table.concat(t, "\n"))`
+    },
+    ["Lock Fruits"] = { -- don't use or eat fruits in this list
+        "Yeti-Yeti",
+        "T-Rex-T-Rex"
+    },
+    ["IdleCheck"] = 300, -- every (x) seconds if not moving rejoin
+};
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xQuartyx/QuartyzScript/main/Loader.lua"))()
     end
 })
 
@@ -1459,48 +1671,87 @@ Kaitunbf:AddButton({
 local Autofruit = tabs.Bloxfruit:AddSection("Find Fruit")
 
 Autofruit:AddButton({
-    Title = "BlueX Hub ( Click to copy cofig and script )",
+    Title = "BlueX Hub",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/n5khegyx")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/n5khegyx",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        getgenv().Config = {
+    ["Misc"] = {
+        ["RandomFruits"] = true,
+        ["RemoveNotify"] = true,
+        ["BlackScreen"] = false,
+    }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dev-BlueX/BlueX-Hub/refs/heads/main/FindFruits.lua"))()
     end
 })   Autofruit:AddButton({
-    Title = "Turbo Lite ( Click to copy cofig and script )",
+    Title = "Turbo Lite",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/fxmq5ced")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/fxmq5ced",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        _G.Team_HaiTac = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/TurboLite/Script/refs/heads/main/TraiCay.lua"))()
     end
 })   Autofruit:AddButton({
-    Title = "Lion Hub ( Click to copy cofig and script )",
+    Title = "Lion Hub",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/qqkhcrrb")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/qqkhcrrb",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        getgenv().Config = {
+    Team = {
+        SelectTeam = "Marines"
+    },
+    BuyFruit = {
+        SelectFruit = {"Kitsune-Kitsune"},
+        BuySelected = false,
+        BuyRandom = true
+    },
+    Tween = {
+        TweenFruit = true,
+        SkipIfOwned = true,
+        StoreFruit = true
+    },
+    Shop = {
+        BuyZoroSword = false,
+        BuyHakiColor = false
+    },
+    Misc = {
+        SendWebhook = true,
+        WebhookURL = "your webhook",
+        DisableEffects = true
+    }
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/d734d024f3000caddd23122da89a6c3e.lua"))()
     end
 })   Autofruit:AddButton({
-    Title = "Skull Hub ( Click to copy cofig and script )",
-    Description = "",
+    Title = "Skull Hub",
+    Description = "Need Key",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/rmb5p65p")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/rmb5p65p",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        getgenv().BloxFruits = {
+    ["Team"] = "Marines", -- Pirates/Marines
+    ["TweenSpeed"] = 350, -- Studs per second 380 no flag but kick
+    ["Fruit"] = {
+        ["FruitNotifier"] = false, -- Fruit notifier
+        ["AutoRandom"] = true, -- Auto random/store fruit
+        ["FruitSniper"] = {
+            ["Enabled"] = false, -- Auto buy fruit in normal shop
+            ["TargetFruits"] = {"Yeti-Yeti", "Dragon-Dragon", "Dough-Dough"},
+        },
+    },
+    ["Farm"] = {
+        ["Enabled"] = true, -- Farm chest & fruit
+        ["FastMethod"] = false, -- Faster but more risky
+        ["BlatantMethod"] = false, -- Instant tp no tween
+        ["AutoHop"] = true, -- Auto hop after collect all
+        ["ItemHop"] = true, -- God's Chalice/Fist of Darkness
+    },
+    ["Webhook"] = {
+        ["Enabled"] = false,
+        ["URL"] = "Your Webhook Url",
+        ["UserId"] = "Id Discord",
+    },
+    ["BlackScreen"] = false,
+    ["FpsBoost"] = true, -- Boost FPS
+    ["AntiIdle"] = true, -- Anti AFK
+}
+loadstring(game:HttpGet('https://raw.githubusercontent.com/hungquan99/SkullHub/main/loader.lua'))()
     end
 })
 
@@ -1519,27 +1770,172 @@ local Autobounty = tabs.Bloxfruit:AddSection("Auto Bounty")
 
 
 Autobounty:AddButton({
-    Title = "Lion Hub ( Click to copy cofig and script )",
+    Title = "Lion Hub",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/hmg9h77x")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/hmg9h77x",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
+        repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
+getgenv().Team = "Pirates"
+getgenv().Config = {
+    ["Safe Health"] = {40},
+    ["Custom Y Run"] = {
+        Enabled = true,
+        ["Y Run"] = 5000
+    },
+    ["Hunt Method"] = {
+        ["Use Move Predict"] = true,
+        ["Hit and Run"] = true,
+        ["Aimbot"] = true,
+        ["ESP Player"] = true,
+        ["Max Attack Time"] = 60
+    },
+    ["Shop"] = {
+        ["Random Fruit"] = false,
+        ["Store Fruit"] = true,
+        ["Zoro Sword"] = false
+    },
+    ["Setting"] = {
+        ["World"] = nil,
+        ["White Screen"] = false,
+        ["Click Delay"] = 0.2,
+        ["Url"] = "Your_Webhook_Url",
+        ["Chat"] = {
+            Enabled = true,
+            Wait = 350,
+            Massage = {"Lion Hub On Top", "Get Best Script g g / lionhub"}
+        }
+    },
+    ["Skip"] = {
+        ["Avoid V4"] = false
+    },
+    ["Spam All Skill On V4"] = {
+        Enabled = true,
+        ["Weapons"] = {"Melee", "Sword", "Gun", "Blox Fruit"}
+    },
+    Items = {
+        Use = {"Melee", "Sword"},
+        Melee = {
+            Enable = true,
+            Delay = 0.6,
+            Skills = {
+                Z = {Enable = true, HoldTime = 0.3},
+                X = {Enable = true, HoldTime = 0.2},
+                C = {Enable = true, HoldTime = 0.5}
+            }
+        },
+        Sword = {
+            Enable = true,
+            Delay = 0.5,
+            Skills = {
+                Z = {Enable = true, HoldTime = 1},
+                X = {Enable = true, HoldTime = 0}
+            }
+        },
+        Gun = {
+            Enable = false,
+            Delay = 0.2,
+            Skills = {
+                Z = {Enable = false, HoldTime = 0.1},
+                X = {Enable = false, HoldTime = 0.1}
+            }
+        },
+        ["Blox Fruit"] = {
+            Enable = true,
+            Delay = 0.4,
+            Skills = {
+                Z = {Enable = true, HoldTime = 0.1},
+                X = {Enable = true, HoldTime = 0.1},
+                C = {Enable = true, HoldTime = 0.15},
+                V = {Enable = false, HoldTime = 0.2},
+                F = {Enable = true, HoldTime = 0.1}
+            }
+        }
+    }
+}
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/10f7f97cebba24a87808c36ebd345a97.lua"))()
     end
 })    Autobounty:AddButton({
-    Title = "Vxeze Hub ( Click to copy cofig and script )",
+    Title = "Vxeze Hub",
     Description = "",
     Callback = function()
-        setclipboard("https://anotepad.com/notes/8etsc47j")
-        Fluent:Notify({
-            Title = "Copied : https://anotepad.com/notes/8etsc47j",
-            Content = "Paste into browser to get script and cofig",
-            Duration = 5
-        })
-        
+        getgenv().Config = {
+    ["Team"] = "Pirates",
+    ["Safe Health"] = {40, 50}, --- 60 - 70
+    ["Skip"] = {
+        ["Fruit"] = {
+            ["Enabled"] = true, --- false
+            ["Avoid Fruit"] = {
+                "Portal-Portal",
+                "Kitsune-Kitsune"
+            }
+        },
+        ["Avoid V4"] = true --- false
+    },
+    ["Hunt Method"] = {
+        ["Use Move Predict"] = true, --- false
+        ["Hit and Run"] = true --- false
+    },
+    ["Spam All Skill On V4"] = {
+        ["Enabled"] = true, --- false
+        ["Weapons"] = {"Melee", "Gun", "Sword", "Blox Fruit"}
+    },
+    ["Chat"] = {
+        ["Enabled"] = false, --- false
+        ["Message"] = {"Vxeze Hub Auto Bounty"}
+    },
+    ["Custom Y Run"] = {
+        ["Enabled"] = true, --- false
+        ["Y Run"] = 5000 --- <5000
+    },
+    ["Misc"] = {
+        ["Auto Teleport Sea 2"] = false,
+        ["Auto Teleport Sea 3"] = true,
+        ["Auto Store Fruit"] = true,
+        ["Auto Random Fruit"] = true,
+        ["White Screen"] = false, --- true
+        ["Disabled Notify"] = false,
+        ["Boots FPS"] = false,
+        ["Auto Dash"] = true,
+        ["Auto Rejoin"] = true,
+        ["Click Delay"] = 0.01
+    },
+    ["Items"] = {
+        ["Use"] = {"Melee", "Gun", "Sword"},
+        ["Melee"] = {
+            ["Enable"] = true,
+            ["Skills"] = {
+                ["Z"] = {["Enable"] = true, ["HoldTime"] = 1.5},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+                ["C"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+            }
+        },
+        ["Blox Fruit"] = {
+            ["Enable"] = true,
+            ["Skills"] = {
+                ["Z"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+                ["C"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+                ["V"] = {["Enable"] = false, ["HoldTime"] = 0.1},
+                ["F"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+            }
+        },
+        ["Sword"] = {
+            ["Enable"] = true,
+            ["Skills"] = {
+                ["Z"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+            }
+        },
+        ["Gun"] = {
+            ["Enable"] = true,
+            ["Skills"] = {
+                ["Z"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+                ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+            }
+        }
+    }
+}
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubAutoBounty"))()
     end
 })
 
