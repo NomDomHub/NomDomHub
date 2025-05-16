@@ -3335,19 +3335,14 @@ wait(5)
 
 
 
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-
-
-local LocalPlayer = Players.LocalPlayer
-
--- Hiển thị thông báo chào mừng
-StarterGui:SetCore("SendNotification", {
-    Title = "Welcome, " .. LocalPlayer.Name,
-    Text = "Use script fun",
-    Icon = "rbxassetid://96047972824190", -- Mã icon hợp lệ (chỉnh lại cho đúng asset ID)
+-- Thông báo chào người chơi
+Fluent:Notify({
+    Title = "Welcome, " .. game.Players.LocalPlayer.Name,
+    Content = "Use script fun",
     Duration = 5
 })
+
+
 
 
 
