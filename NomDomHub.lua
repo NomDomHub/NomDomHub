@@ -1850,6 +1850,81 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/10f7f97cebba24
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubAutoBounty"))()
     end
+})    Autobounty:AddButton({
+    Title = "Hiru Hub",
+    Description = "",
+    Callback = function()
+        getgenv().Config = {
+ ["Team"] = "Pirates",
+ ["Safe Health"] = {40, 50},
+ ["Skip"] = { 
+ ["Fruit"] = {["Enabled"] = true,
+ ["Avoid Fruit"] = {
+ "Portal-Portal", 
+ "Kitsune-Kitsune"
+ }
+ },
+ ["Avoid V4"] = true
+ },
+ ["Hunt Method"] = {
+ ["Use Move Predict"] = true,
+ ["Hit and Run"] = true
+ },
+ ["Spam All Skill On V4"] = {
+ ["Enabled"] = true,
+ ["Weapons"] = {"Melee", "Gun", "Sword", "Blox Fruit"}
+ },
+ ["Chat"] = {
+ ["Enabled"] = false,
+ ["Message"] = {"Hiru Hub Bounty"}
+ },
+ ["Custom Y Run"] = {
+ ["Enabled"] = false,
+ ["Y Run"] = 100
+ },
+ ["Misc"] = {
+ ["Auto Store Fruit"] = true,
+ ["Auto Random Fruit"] = true,
+ ["White Screen"] = false,
+ ["Click Delay"] = 0.1,
+ },
+ ["Items"] = {["Use"] = {"Melee", "Gun", "Sword"},
+ ["Melee"] = {
+ ["Enable"] = true,
+ ["Skills"] = {
+ ["Z"] = {["Enable"] = true, ["HoldTime"] = 1.5},
+ ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+ ["C"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+ }
+ },
+ ["Blox Fruit"] = {
+ ["Enable"] = false,
+ ["Skills"] = {
+ ["Z"] = {["Enable"] = true, ["HoldTime"] = 1.2},
+ ["X"] = {["Enable"] = true, ["HoldTime"] = 0},
+ ["C"] = {["Enable"] = true, ["HoldTime"] = 0},
+ ["V"] = {["Enable"] = false, ["HoldTime"] = 0},
+ ["F"] = {["Enable"] = false, ["HoldTime"] = 0}
+ }
+ },
+ ["Sword"] = {
+ ["Enable"] = true,
+ ["Skills"] = {
+ ["Z"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+ ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+ } 
+ },
+ ["Gun"] = {
+ ["Enable"] = true, 
+ ["Skills"] = {
+ ["Z"] = {["Enable"] = true, ["HoldTime"] = 0.1},
+ ["X"] = {["Enable"] = true, ["HoldTime"] = 0.1}
+ } 
+ }
+ }
+}
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Source/main/Bounty.lua"))()
+    end
 })
 
 
@@ -1925,7 +2000,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloade
     Title = "Ameicaa",
     Description = "",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/ameicaa1/Grow-a-Garden/main/Grow_%E2%80%8BA_%E2%80%8BGarden.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tesghg/Grow-a-Garden/main/ameicaa_Grow_A_Garden.lua"))()
     end
 })    tabs.Growagarden:AddButton({
     Title = "Vxeze Hub",
