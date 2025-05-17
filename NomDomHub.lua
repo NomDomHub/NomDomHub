@@ -1019,7 +1019,8 @@ Mainbf:AddButton({
     Title = "Banana Fake ( Min Gamming )",
     Description = "",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/farghii/relzhub/refs/heads/main/loader.lua"))()
+        getgenv().Team = "Pirates"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MinGamingHubNew/Banana/refs/heads/main/Banana.lua"))()
     end
 })    Mainbf:AddButton({
     Title = "Relz Hub",
