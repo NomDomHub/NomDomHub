@@ -3,111 +3,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/Loading.lua"))()
 
 
-local HttpService = game:GetService("HttpService")
-local Players = game:GetService("Players")
-local UserInput = game:GetService("UserInputService")
-local Market = game:GetService("MarketplaceService")
-local player = Players.LocalPlayer
-
--- Lấy tên game
-local gameName = "Unknown"
-pcall(function()
-	gameName = Market:GetProductInfo(game.PlaceId).Name
-end)
-
--- Lấy thiết bị và executor
-local device = UserInput.TouchEnabled and "Mobile" or "PC"
-local executor = "Unknown"
-pcall(function()
-	executor = getexecutorname and getexecutorname() or "Unknown"
-end)
-
--- Gửi webhook
-local function sendWebhook(answer)
-	local joinScript = string.format(
-		'game:GetService("TeleportService"):TeleportToPlaceInstance(%d, "%s", game.Players.LocalPlayer)',
-		game.PlaceId, game.JobId or "Unknown"
-	)
-
-	local data = {
-		username = "Active Script Statistics Notify",
-		embeds = {{
-			title = "Active Script Statistics Notify | NomDom",
-			color = 0xFFFFFF,
-			fields = {
-				{name = "Username", value = "```\n" .. player.Name .. "\n```", inline = true},
-				{name = "Game", value = "```\n" .. gameName .. "\n```", inline = false},
-				{name = "Device", value = "```\n" .. device .. "\n```", inline = true},
-				{name = "Executor", value = "```\n" .. executor .. "\n```", inline = true},
-				{name = "Answer", value = "```\n" .. answer .. "\n```", inline = false},
-				{name = "Join Script", value = "```lua\n" .. joinScript .. "\n```", inline = false}
-			},
-			footer = {text = os.date("User Notify - %d/%m/%Y - %H:%M:%S")}
-		}}
-	}
-
-	local blockedNames = {"Boptrithuc", "acctesthacktuviet", "boptrithuc01"}
-	for _, name in ipairs(blockedNames) do
-		if player.Name == name then return end
-	end
-
-	local req = (syn and syn.request) or request or http_request
-	if req then
-		pcall(function()
-			req({
-				Url = "https://discord.com/api/webhooks/1372951128852926606/DhA_39RHMRnq-Orp5AZa8SjwEE4OywjSMlMj4Ka11d5CSEoNH8gbus4cc-qjk4oPJmBY",
-				Method = "POST",
-				Headers = {["Content-Type"] = "application/json"},
-				Body = HttpService:JSONEncode(data)
-			})
-		end)
-	end
-end
-
--- Tạo thông báo chọn Yes/No
-local Bindable = Instance.new("BindableFunction")
-local notificationSent = false
-
-function Bindable.OnInvoke(response)
-	if not notificationSent then
-		notificationSent = true
-
-		if response == "Yes" then
-			game.StarterGui:SetCore("SendNotification", {
-				Title = "Shark [AI]",
-				Text = "Thế dùng đi",
-				Icon = "rbxassetid://81747018704333",
-				Duration = 5
-			})
-			game.StarterGui:SetCore("SendNotification", {
-				Title = "Duck [AI]",
-				Text = "Chúc chú em dùng script vui vẻ",
-				Icon = "rbxassetid://78304081979681",
-				Duration = 5
-			})
-		else
-			game.StarterGui:SetCore("SendNotification", {
-				Title = "Yae Miko [AI]",
-				Text = "Xin lỗi , đợi Developer fix",
-				Icon = "rbxassetid://70924166490606",
-				Duration = 5
-			})
-		end
-
-		sendWebhook(response)
-	end
-end
-
--- Hiển thị câu hỏi ban đầu
-game.StarterGui:SetCore("SendNotification", {
-	Title = "NomDom [AI]",
-	Text = "Script có hoạt động không ?",
-	Icon = "rbxassetid://96047972824190",
-	Duration = 9999999,
-	Button1 = "Yes",
-	Button2 = "No",
-	Callback = Bindable
-})
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/QuestionWedbook.lua"))()
 
 
 
@@ -160,11 +56,12 @@ local tabs = {
     Setting = window:AddTab({ Title = "Setting", Icon = "settings" }),--- ID của icon setting
     PhanScripts = window:AddTab({ Title = "-------- Scripts --------" }),
     Bloxfruit = window:AddTab({ Title = "Blox Fruit" }),
+    Growagarden = window:AddTab({ Title = "Grow A Garden" }),
     Arisecrossover = window:AddTab({ Title = "Arise Crossover" }),
     Deedrails = window:AddTab({ Title = "Deed Rails" }),
-    Growagarden = window:AddTab({ Title = "Grow A Garden" }),
     Bladeball = window:AddTab({ Title = "Blade Ball" }),
     Bluelock = window:AddTab({ Title = "Blue Lock" }),
+    Forsaken = window:AddTab({ Title = "Forsaken" }),
     Fisch = window:AddTab({ Title = "Fisch" }),
     Petgo = window:AddTab({ Title = "Pet Go" }),
     Volleyball = window:AddTab({ Title = "Volleyball Legends" }),
@@ -1119,6 +1016,12 @@ Mainbf:AddButton({
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Xero2409/XeroHub/refs/heads/main/main.lua"))()  
     end
 })    Mainbf:AddButton({
+    Title = "Banana Fake ( Min Gamming )",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/farghii/relzhub/refs/heads/main/loader.lua"))()
+    end
+})    Mainbf:AddButton({
     Title = "Relz Hub",
     Description = "",
     Callback = function()
@@ -1148,6 +1051,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/HoangNguyenk8/Roblox/
     Description = "",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
+    end
+})    Mainbf:AddButton({
+    Title = "Hiru Hub",
+    Description = "Need Key",
+    Callback = function()
+        getgenv().DuyKiddoDevTeam = true
+getgenv().Team = "Pirates"
+getgenv().Chat = "Hiru Hub On Top"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaStupid/Source/main/HiruHubKiddo.lua"))()
     end
 })     Mainbf:AddButton({
     Title = "Lilnhan V4",
@@ -1323,14 +1235,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Loader/main/
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/Kncrypt/refs/heads/main/sources/BloxFruit.lua"))()  
     end
-})    Mainbf:AddButton({
-    Title = "Hiru Hub",
-    Description = "Need Key",
-    Callback = function()
-        getgenv().Team = "Pirates"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Source/main/HiruHub.lua"))()  
-    end
-})   Mainbf:AddButton({
+})  Mainbf:AddButton({
     Title = "HoHo Hub",
     Description = "Need Key",
     Callback = function()
@@ -1776,14 +1681,14 @@ Autobounty:AddButton({
         repeat wait() until game:IsLoaded() and game.Players.LocalPlayer
 getgenv().Team = "Pirates"
 getgenv().Config = {
-    ["Safe Health"] = {40},
+    ["Safe Health"] = {50},
     ["Custom Y Run"] = {
         Enabled = true,
         ["Y Run"] = 5000
     },
     ["Hunt Method"] = {
-        ["Use Move Predict"] = true,
-        ["Hit and Run"] = true,
+        ["Use Move Predict"] = false,
+        ["Hit and Run"] = false,
         ["Aimbot"] = true,
         ["ESP Player"] = true,
         ["Max Attack Time"] = 60
@@ -1792,14 +1697,21 @@ getgenv().Config = {
         ["Random Fruit"] = false,
         ["Store Fruit"] = true,
         ["Zoro Sword"] = false
+    }, 
+    ["Ui Theme"] = {
+        ["Background"] = "139756291389843",
+        ["Skip Button"] = "113079599736013",
+        ["Reset Bounty Button"] = "118191900561814"
     },
     ["Setting"] = {
         ["World"] = nil,
         ["White Screen"] = false,
-        ["Click Delay"] = 0.2,
+        ["Fast Delay"] = 0.5, 
+        ["Tween Speed"] = 350,
+        ["FPS BOOSTER"] = false,
         ["Url"] = "Your_Webhook_Url",
         ["Chat"] = {
-            Enabled = true,
+            Enabled = false,
             Wait = 350,
             Massage = {"Lion Hub On Top", "Get Best Script g g / lionhub"}
         }
@@ -1812,10 +1724,10 @@ getgenv().Config = {
         ["Weapons"] = {"Melee", "Sword", "Gun", "Blox Fruit"}
     },
     Items = {
-        Use = {"Melee", "Sword"},
+        Use = {"Melee", "Sword", "Gun", "Blox Fruit"},
         Melee = {
             Enable = true,
-            Delay = 0.6,
+            Delay = 0.4,
             Skills = {
                 Z = {Enable = true, HoldTime = 0.3},
                 X = {Enable = true, HoldTime = 0.2},
@@ -1830,12 +1742,12 @@ getgenv().Config = {
                 X = {Enable = true, HoldTime = 0}
             }
         },
-        Gun = {
-            Enable = false,
-            Delay = 0.2,
+Gun = {
+            Enable = true,
+            Delay = 0.3,
             Skills = {
-                Z = {Enable = false, HoldTime = 0.1},
-                X = {Enable = false, HoldTime = 0.1}
+                Z = {Enable = true, HoldTime = 0.1},
+                X = {Enable = true, HoldTime = 0.1}
             }
         },
         ["Blox Fruit"] = {
@@ -1845,7 +1757,7 @@ getgenv().Config = {
                 Z = {Enable = true, HoldTime = 0.1},
                 X = {Enable = true, HoldTime = 0.1},
                 C = {Enable = true, HoldTime = 0.15},
-                V = {Enable = false, HoldTime = 0.2},
+                V = {Enable = true, HoldTime = 0.2},
                 F = {Enable = true, HoldTime = 0.1}
             }
         }
@@ -1963,6 +1875,40 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/ref
 
 
 tabs.Growagarden:AddButton({
+    Title = "Native Hub",
+    Description = "Need Ket",
+    Callback = function()
+        script_key="PASTE_KEY_HERE";
+(loadstring or load)(game:HttpGet("https://getnative.cc/script/loader"))()
+    end
+})   tabs.Growagarden:AddButton({
+    Title = "Solix Hub ( Kaitun )",
+    Description = "",
+    Callback = function()
+        _G.AutoFarm = true
+_G.PerformanceMode = "Fast" -- "LowEnd", "Normal", "Fast", "Ultra"
+_G.TeleportCooldown = 0.1
+-- Seed settings
+_G.AutoRebuy = true
+_G.SeedPrice = 4000
+_G.AutoSellThreshold = 50
+_G.AutoWatering = true
+_G.AutoSprinklers = true
+-- Gear shop
+_G.GearShopAutoBuy = true
+_G.GearShopItems = {"Basic Watering Can", "Basic Sprinkler", "Basic Shovel"}
+_G.RenderDistance = 50
+_G.UIUpdateInterval = 2
+_G.OptimizeRendering = true
+loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloader/refs/heads/main/solix%20v2%20new%20loader.lua"))()
+    end
+})    tabs.Growagarden:AddButton({
+    Title = "Black Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Skibidiking123/Fisch1/refs/heads/main/FischMain"))()
+    end
+}) tabs.Growagarden:AddButton({
     Title = "TBao Hub",
     Description = "",
     Callback = function()
@@ -2192,6 +2138,55 @@ tabs.Bluelock:AddButton({
     Description = "",
     Callback = function()
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c84ecefd7fa63a35d454d3ecefe3ee7e.lua"))()
+    end
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    tabs.Forsaken:AddButton({
+    Title = "ShitScripts",
+    Description = "",
+    Callback = function()
+        if getgenv then
+    getgenv().BloxtrapRPC = "true"
+    getgenv().DebugNotifications = "false"
+    getgenv().TrackMePlease = "true"
+end
+ 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ivannetta/ShitScripts/main/forsaken.lua"))()
+    end
+})    tabs.Forsaken:AddButton({
+    Title = "Goa Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Nevcit/GOA_HUB/refs/heads/main/Forsaken"))()
+    end
+})    tabs.Forsaken:AddButton({
+    Title = "Saryn Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Saiky988/Saryn-Hub/refs/heads/main/Saryn%Hub%Beta.lua'))()
+    end
+})    tabs.Forsaken:AddButton({
+    Title = "RainV Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/OGWBZb1S/raw"))() 
     end
 })
 
@@ -2443,15 +2438,39 @@ tabs.Petgo:AddButton({
 
 
 
-tabs.Deedrails:AddButton({
-    Title = "NomDom Hub (Beta)",
+   tabs.Deedrails:AddButton({
+    Title = "Nebula Hub",
     Description = "",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/TDDuym500/CodeNoMaHoa/refs/heads/main/NomDomDeedRails.lua"))()  
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NebulaHubOfc/Public/refs/heads/main/Loader.lua"))()      
     end
-})    tabs.Deedrails:AddButton({
-    Title = "Yon Hub",
+})     tabs.Deedrails:AddButton({
+    Title = "Rift Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://rifton.top/loader.lua"))()      
+    end
+})     tabs.Deedrails:AddButton({
+    Title = "Akatsuki Hub",
     Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AkatsukiHub1/Rails/refs/heads/main/README.md"))()       
+    end
+})     tabs.Deedrails:AddButton({
+    Title = "XuanVP Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XUANVNPRO/XuanVPHUB/refs/heads/main/XuanVPPHUB.lua.txt"))()       
+    end
+})     tabs.Deedrails:AddButton({
+    Title = "Lunor Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://lunor.dev/loader'))()       
+    end
+})      tabs.Deedrails:AddButton({
+    Title = "Yon Hub",
+    Description = "Need Key",
     Callback = function()
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be9f75cf2b14e58f62e05e296ce0660b.lua"))()       
     end
@@ -3279,7 +3298,7 @@ button.Size = UDim2.new(0, 50, 0, 50)
 button.Position = UDim2.new(0.120833337 - 0.1, 0, 0.0952890813 + 0.01, 0)
 button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 button.BorderSizePixel = 0
-button.Image = "http://www.roblox.com/asset/?id=96047972824190"
+button.Image = "http://www.roblox.com/asset/?id=106181852399090"
 
 button.Draggable = true
 button.Parent = gui
@@ -3328,9 +3347,6 @@ button.MouseButton1Down:Connect(function()
     game:GetService("VirtualInputManager"):SendKeyEvent(true, Enum.KeyCode.End, false, game)
 end)
 
-
-
-wait(5)
 
 
 
