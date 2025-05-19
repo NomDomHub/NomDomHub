@@ -32,7 +32,7 @@ end
 
 -- Tạo cửa sổ Fluent
 local window = Fluent:CreateWindow({
-    Title = isSpecialUser and "NomDom Hub [Developer]" or "NomDom Hub [User]",
+    Title = isSpecialUser and "NomDom Hub [Premium]" or "NomDom Hub [Freemium]",
     SubTitle = "by Sus",
     TabWidth = (UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled) and 160 or 190,  -- Mobile: 160, PC: 190
     Theme = "Dark",
@@ -57,11 +57,12 @@ local tabs = {
     PhanScripts = window:AddTab({ Title = "-------- Scripts --------" }),
     Bloxfruit = window:AddTab({ Title = "Blox Fruit" }),
     Growagarden = window:AddTab({ Title = "Grow A Garden" }),
-    Arisecrossover = window:AddTab({ Title = "Arise Crossover" }),
     Deedrails = window:AddTab({ Title = "Deed Rails" }),
-    Bladeball = window:AddTab({ Title = "Blade Ball" }),
+    BubbleRubber = window:AddTab({ Title = "Bubble Rubber Simulator" }),
     Bluelock = window:AddTab({ Title = "Blue Lock" }),
+    Arisecrossover = window:AddTab({ Title = "Arise Crossover" }),
     Forsaken = window:AddTab({ Title = "Forsaken" }),
+    Bladeball = window:AddTab({ Title = "Blade Ball" }),
     Fisch = window:AddTab({ Title = "Fisch" }),
     Petgo = window:AddTab({ Title = "Pet Go" }),
     Volleyball = window:AddTab({ Title = "Volleyball Legends" }),
@@ -546,9 +547,8 @@ local Joinid = tabs.Joinid:AddSection("Join ID")
 
 
 
-
-
-Joinid:AddInput("Input", {
+-- Tạo ô nhập
+local jobInput = Joinid:AddInput("Input", {
     Title = "Job ID",
     Default = "",
     Placeholder = "Paste Job ID Here",
@@ -558,13 +558,59 @@ Joinid:AddInput("Input", {
         _G.Job = Value
     end
 })
+
+-- Nút Join xử lý thông minh
 Joinid:AddButton({
-    Title="Join",
-    Description="",
-    Callback=function()
-        game:GetService("TeleportService"):TeleportToPlaceInstance(game.placeId,_G.Job, game.Players.LocalPlayer)
+    Title = "Join",
+    Description = "",
+    Callback = function()
+        local text = _G.Job or ""
+        if text ~= "" then
+            pcall(function()
+                if text:lower() == "teleport" then
+                    local function getServerID()
+                        return "dffebadf-3464-4ab7-af0e-b10499120fa3" -- Thay bằng JobId hợp lệ nếu có
+                    end
+                    local serverID = getServerID()
+                    if serverID then
+                        game:GetService("TeleportService"):TeleportToPlaceInstance(2753915549, serverID, game.Players.LocalPlayer)
+                    end
+
+                elseif text:match("TeleportService") then
+                    loadstring(text)()
+
+                elseif text:match("InvokeServer") then
+                    loadstring(text)()
+
+                elseif text:match("%d+%.%d+%.%d+%.%d+") and text:match("TeleportService") then
+                    loadstring(text)()
+                end
+            end)
+
+            _G.Job = ""
+            if jobInput and jobInput.SetValue then
+                jobInput:SetValue("")
+            end
+        end
     end
 })
+
+-- Nút Clear input
+Joinid:AddButton({
+    Title = "Clear",
+    Description = "",
+    Callback = function()
+        _G.Job = ""
+        if jobInput and jobInput.SetValue then
+            jobInput:SetValue("")
+        end
+    end
+})
+
+
+
+
+
 Joinid:AddButton({
     Title="Copy Job ID",
     Description="",
@@ -603,17 +649,23 @@ local Players = game:GetService("Players")
 local gameList = {
     ["Blox Fruits"] = 2753915549,
     ["Grow A Garden"] = 126884695634066,
+    ["Deed Rails"] = 116495829188952,
+    ["Bubble Rubber Simulator"] = 85896571713843,
     ["Blue Lock"] = 18668065416,
+    ["Arise Crossover"] = 87039211657390,
+    ["Forsaken"] = 85896571713843,
+    ["Blade Ball"] = 13772394625,
     ["Fish"] = 16732694052,
     ["Pet Go"] = 18901165922,
-    ["Deed Rails"] = 116495829188952,
-    ["Arise Crossover"] = 87039211657390,
     ["Volleyball Legends"] = 73956553001240,
     ["Basketball"] = 130739873848552,
     ["Mm2"] = 142823291,
     ["The Strongest Battlegrounds"] = 10449761463,
     ["Rivals"] = 17625359962,
 }
+
+
+
 
 -- Biến lưu game đã chọn
 local selectedGame = nil
@@ -1076,6 +1128,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NewBetaLua/Lilnhan/re
         getgenv().Teams = "Marines"  --Pirates
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NewBetaLua/Lilnhan/refs/heads/main/LilnhanHubV3"))()
     end
+})     Mainbf:AddButton({
+    Title = "Than Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
+    end
 })    Mainbf:AddButton({
     Title = "Yuri Hub",
     Description = "Need Key",
@@ -1110,7 +1168,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NewBetaLua/Lilnhan/re
     Title = "Maru Hub Fake",
     Description = "",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/KimP/refs/heads/main/MaruHub"))() 
+        getgenv().Team = "Marines" 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/KimP/refs/heads/main/MaruHub"))()
     end
 })    Mainbf:AddButton({
     Title = "Banana Hub Fake",
@@ -1950,7 +2009,25 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Source/m
 
 
 
-tabs.Growagarden:AddButton({
+    tabs.Growagarden:AddButton({
+    Title = "Ameicaa",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tesghg/Grow-a-Garden/main/ameicaa_Grow_A_Garden.lua"))()
+    end
+})   tabs.Growagarden:AddButton({
+    Title = "Beecon Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+    end
+})    tabs.Growagarden:AddButton({
+    Title = "Speed Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+    end
+})     tabs.Growagarden:AddButton({
     Title = "Native Hub",
     Description = "Need Ket",
     Callback = function()
@@ -1996,13 +2073,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/solixloade
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/NittarPP/PhotonScript/refs/heads/main/Loading/Loading.lua"))()
     end
-})    tabs.Growagarden:AddButton({
-    Title = "Ameicaa",
-    Description = "",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/tesghg/Grow-a-Garden/main/ameicaa_Grow_A_Garden.lua"))()
-    end
-})    tabs.Growagarden:AddButton({
+})   tabs.Growagarden:AddButton({
     Title = "Vxeze Hub",
     Description = "",
     Callback = function()
@@ -2515,6 +2586,20 @@ tabs.Petgo:AddButton({
 
 
    tabs.Deedrails:AddButton({
+    Title = "XuanVP Hub ( Auto Fram Bond V1)",
+    Description = "",
+    Callback = function()
+        _G.url = "linkwebhook"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/XUANVNPRO/Bondfarm/refs/heads/main/Bondv1"))()      
+    end
+})   tabs.Deedrails:AddButton({
+    Title = "XuanVP Hub ( Auto Fram Bond V2)",
+    Description = "",
+    Callback = function()
+        _G.url = "linkwebhook"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/XUANVNPRO/Bondfarm/refs/heads/main/Bondv2"))()      
+    end
+})   tabs.Deedrails:AddButton({
     Title = "Nebula Hub",
     Description = "",
     Callback = function()
@@ -2733,6 +2818,122 @@ tabs.Petgo:AddButton({
 
 
 
+
+
+-------[            Bubble Rubber Simulator           ]--------
+
+
+
+
+
+
+
+
+   tabs.BubbleRubber:AddButton({
+    Title = "Smoke Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/etqjuyreal/smoke/refs/heads/main/bgsi.lua"))()
+    end
+})
+    tabs.BubbleRubber:AddButton({
+    Title = "Beecon Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/BaconBossScript/BeeconHub/main/BeeconHub"))()
+    end
+})    
+    tabs.BubbleRubber:AddButton({
+    Title = "Speed Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+    end
+}) 
+    tabs.BubbleRubber:AddButton({
+    Title = "Tbi",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1ecd78392f03d4393a38374136a8e5a8.lua"))()
+    end
+}) 
+    tabs.BubbleRubber:AddButton({
+    Title = "Strelizia Hub",
+    Description = "Need Key",
+    Callback = function()
+        getgenv().UserPreference = {
+    ['RiftPotions'] = {
+        ['AuraEggPotions'] = {
+            --['Infinity Elixir'] = true,
+            --['Lucky Evolved'] = true,
+            --['Speed Evolved'] = true,
+        },
+        ['TwentyFiveMultiPotions'] = {
+            --['Lucky Evolved'] = true,
+            --['Speed Evolved'] = true,
+            --['Mythic Evolved'] = true
+        }
+    }
+};
+loadstring(game:HttpGet('https://raw.githubusercontent.com/0vma/Strelizia/refs/heads/main/Loader.lua', true))()
+    end
+})  tabs.BubbleRubber:AddButton({
+    Title = "Nigel Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/eac841be8e94cbe9d477d0bde5c0a312.lua"))()
+    end
+})    tabs.BubbleRubber:AddButton({
+    Title = "Moon X Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MateoDev2024/MoonX/main/Loader.lua"))()
+    end
+})     tabs.BubbleRubber:AddButton({
+    Title = "Alchemy Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
+    end
+})     tabs.BubbleRubber:AddButton({
+    Title = "Than Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/thantzy/thanhub/refs/heads/main/thanv1"))()
+    end
+})    tabs.BubbleRubber:AddButton({
+    Title = "Nousigi Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()
+    end
+})    tabs.BubbleRubber:AddButton({
+    Title = "NS Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/OhhMyGehlee/be/refs/heads/main/u"))()
+    end
+})    tabs.BubbleRubber:AddButton({
+    Title = "Lunor Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://lunor.dev/loader'))()
+    end
+}) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -------[            Arise Crossover            ]--------
 
 
@@ -2749,6 +2950,24 @@ tabs.Petgo:AddButton({
 
 
 tabs.Arisecrossover:AddButton({
+    Title = "Lunor Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://lunor.dev/loader'))()
+    end
+})  tabs.Arisecrossover:AddButton({
+    Title = "Omg Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Omgshit/Scripts/main/MainLoader.lua"))()
+    end
+})  tabs.Arisecrossover:AddButton({
+    Title = "Nil Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2c5f110f91165707959fc626b167e036.lua"))()
+    end
+})  tabs.Arisecrossover:AddButton({
     Title = "RoyX Hub",
     Description = "",
     Callback = function()
@@ -2944,6 +3163,30 @@ tabs.Arisecrossover:AddButton({
 
 
 tabs.Tsb:AddButton({
+    Title = "Spooks Spooky Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/ApparentlySpooks/spookshubTSB/refs/heads/main/SHTSB.txt'))()
+    end
+})    tabs.Tsb:AddButton({
+    Title = "Rinns Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/SkibidiCen/MainMenu/main/Code'))()
+    end
+})    tabs.Tsb:AddButton({
+    Title = "TSB Animations",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Mautiku/ehh/main/strong%20guest.lua.txt'))()
+    end
+})    tabs.Tsb:AddButton({
+    Title = "VaultScript",
+    Description = "Key : Th3Vault$criptsK3y",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Loolybooly/TheVaultScripts/refs/heads/main/FullScript"))() 
+    end
+})    tabs.Tsb:AddButton({
     Title = "Beecon Hub",
     Description = "",
     Callback = function()
@@ -3059,7 +3302,19 @@ tabs.Tsb:AddButton({
 
 
 
-tabs.Rivals:AddButton({
+    tabs.Rivals:AddButton({
+    Title = "Tbao Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/main/TbaoHubRivals"))()
+    end
+})    tabs.Rivals:AddButton({
+    Title = "Duck Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/HexFG/duckhub/refs/heads/main/loader.lua'))()
+    end
+})  tabs.Rivals:AddButton({
     Title = "Ronix Hub",
     Description = "",
     Callback = function()
@@ -3445,3 +3700,10 @@ wait(1)
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/WedbookScript.lua"))()
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NomDomHub/NomDomHub/refs/heads/main/NotifyBloxFruit.lua"))()
+
+
+
+
+
+
+
