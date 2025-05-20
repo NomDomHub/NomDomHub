@@ -70,6 +70,14 @@ local tabs = {
     Mm2 = window:AddTab({ Title = "Mm2" }),
     Tsb = window:AddTab({ Title = "The Strongest Battlegrounds" }),
     Rivals = window:AddTab({ Title = "Rivals" }),
+    CongDongVietNam = window:AddTab({ Title = "Cộng Đồng Việt Nam" }),
+    AnimeSaga = window:AddTab({ Title = "Anime Saga" }),
+    AnimeRangersX = window:AddTab({ Title = "Anime Rangers X" }),
+    AnimeVanguards = window:AddTab({ Title = "Anime Vanguards" }),
+    AnimeLastStand = window:AddTab({ Title = "Anime Last Stand" }),
+    AttackOnTitanRevolution = window:AddTab({ Title = "Attack on Titan Revolution" }),
+    Door = window:AddTab({ Title = "Door" }),
+    KingLegacy = window:AddTab({ Title = "King Legacy" }),
     Misc = window:AddTab({ Title = "Misc" }),
 }
 
@@ -661,6 +669,14 @@ local gameList = {
     ["Basketball"] = 130739873848552,
     ["Mm2"] = 142823291,
     ["The Strongest Battlegrounds"] = 10449761463,
+    ["Cộng Đồng Việt Nam"] = 18192562963,
+    ["Anime Saga"] = 17850641257,
+    ["Anime Rangers"] = 72829404259339,
+    ["Anime Vanguards"] = 16146832113,
+    ["Anime Last Stand"] = 12886143095,
+    ["Attack On Titan Revolution"] = 13379208636,
+    ["Door"] = 6516141723,
+    ["King Legacy"] = 4520749081,
     ["Rivals"] = 17625359962,
 }
 
@@ -1350,6 +1366,13 @@ Hopbf:AddButton({
     Description = "",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunTyrantOfTheSkies.lua"))()
+    end
+})    Hopbf:AddButton({
+    Title = "GreenZ Hub Kaitun Rip Indra True Form",
+    Description = "",
+    Callback = function()
+        repeat wait() until game:IsLoaded() and game.Players.LocalPlayer 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaAnarchist/GreenZ-Hub/refs/heads/main/KaitunRipIndraTrueForm.lua"))()
     end
 })        Hopbf:AddButton({
     Title = "Teddy Hub",
@@ -2586,7 +2609,13 @@ tabs.Petgo:AddButton({
 
 
    tabs.Deedrails:AddButton({
-    Title = "XuanVP Hub ( Auto Fram Bond V1)",
+    Title = "XuanVP Hub ( Fly )",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/XUANVNPRO/XuanVPHUB/refs/heads/main/FlyGui.lua.txt"))()
+    end
+})   tabs.Deedrails:AddButton({
+    Title = "XuanVP Hub ( Auto Fram Bond V1 )",
     Description = "",
     Callback = function()
         _G.url = "linkwebhook"
@@ -3325,6 +3354,329 @@ tabs.Tsb:AddButton({
     Description = "",
     Callback = function()
         loadstring(game:HttpGet("https://soluna-script.vercel.app/main.lua",true))()
+    end
+})
+
+
+
+
+
+
+-------[            Cộng Đồng Việt Nam            ]--------
+
+
+
+
+
+    tabs.CongDongVietNam:AddButton({
+    Title = "Radiant Hub Auto Grab",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/x2RunE/QuynhLaSo1/refs/heads/main/AutoGrabCDVN.lua"))()
+    end
+})     tabs.CongDongVietNam:AddButton({
+    Title = "XZ Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet('https://z3rx.tech/script.lua'))()
+    end
+})
+
+
+
+
+
+
+-------[            Anime Saga            ]--------
+
+
+
+
+     tabs.AnimeSaga:AddButton({
+    Title = "Tora IsMe",
+    Description = "",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/AnimeSaga"))() 
+    end
+})     tabs.AnimeSaga:AddButton({
+    Title = "Ns Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/OhhMyGehlee/ga/refs/heads/main/ga"))()
+    end
+})     tabs.AnimeSaga:AddButton({
+    Title = "Aeonic Hub",
+    Description = "Need Key",
+    Callback = function()
+        script_key = "" -- For Afk Farming
+loadstring(game:HttpGet("https://raw.githubusercontent.com/mazino45/main/refs/heads/main/MainScript.lua"))()
+    end
+})     tabs.AnimeSaga:AddButton({
+    Title = "Yuto Hub",
+    Description = "Need Key",
+    Callback = function()
+        repeat wait() until game:IsLoaded()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/Binintrozza/yutv2e/main/Yutohub')))() 
+    end
+})     tabs.AnimeSaga:AddButton({
+    Title = "Hyper Hab Script",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/all-script-2/refs/heads/main/loader.lua"))()
+    end
+})     tabs.AnimeSaga:AddButton({
+    Title = "EclipseX Hub",
+    Description = "Need Key",
+    Callback = function()
+        script_key="PASTE_YOUR_KEY_HERE";
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/74c9ed77af04c6f2e365200b858bb14d.lua"))()
+    end
+})
+
+
+
+
+
+
+
+
+-------[           Anime Rangers X             ]--------
+
+
+
+
+
+
+
+
+
+    tabs.AnimeRangersX:AddButton({
+    Title = "RoyX Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/nomed-rin/Royx_Free/refs/heads/main/loader.lua"))()
+    end
+})    tabs.AnimeRangersX:AddButton({
+    Title = "Tora IsMe",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/gumanba/Scripts/refs/heads/main/AnimeRangersX"))()
+    end
+})    tabs.AnimeRangersX:AddButton({
+    Title = "Ns Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/OhhMyGehlee/yu/refs/heads/main/tu"))()
+    end
+})   tabs.AnimeRangersX:AddButton({
+    Title = "Legend Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://scripts.city/LegendHub.lua"))()
+    end
+})  tabs.AnimeRangersX:AddButton({
+    Title = "L Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/YOies/KazounVN/refs/heads/main/ARX"))()
+    end
+})
+
+
+
+
+
+
+
+-------[            Anime Vanguards            ]--------
+
+
+
+
+
+    tabs.AnimeVanguards:AddButton({
+    Title = "Bang Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/buang5516/buanghub/main/BUANGHUB.lua'))()
+    end
+})    tabs.AnimeVanguards:AddButton({
+    Title = "Speed Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AhmadV99/Speed-Hub-X/main/Speed%20Hub%20X.lua", true))()
+    end
+})    tabs.AnimeVanguards:AddButton({
+    Title = "Solix Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/debunked69/Solixreworkkeysystem/refs/heads/main/solix%20new%20keyui.lua"))()
+    end
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------[            Anime Last Stand            ]--------
+
+
+
+
+
+
+
+
+    tabs.AnimeLastStand:AddButton({
+    Title = "Vxrsa Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/4f5619867ab50ed14ce04ac9d95ec043.lua"))()
+    end
+})    tabs.AnimeLastStand:AddButton({
+    Title = "Lmp Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/alan11ago/Hub/refs/heads/main/ImpHub.lua"))()
+    end
+})    tabs.AnimeLastStand:AddButton({
+    Title = "Buang Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/buang5516/buanghub/main/animeLastStand.lua"))()
+    end
+})
+
+
+
+
+
+
+
+-------[            Attack On Titan Revolution            ]--------
+
+
+
+
+
+
+
+
+
+
+
+    tabs.AttackOnTitanRevolution:AddButton({
+    Title = "Tekkit Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/zerunquist/TekkitAotr/refs/heads/main/main"))()
+    end
+})    tabs.AttackOnTitanRevolution:AddButton({
+    Title = "Shadow Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/levishifter/levishifter/refs/heads/main/ghoulre.lua"))()
+    end
+})
+
+
+
+
+
+
+
+
+-------[            Door            ]--------
+
+
+
+
+
+
+
+
+    tabs.Door:AddButton({
+        Title = "Mspaint V4",
+        Description = "Have Key,Copy Web And Join Discord Link To Getkey",
+        Callback = function()
+            setclipboard("https://mspaint.cc")
+        end
+})    tabs.Door:AddButton({
+        Title = "Black King",
+        Description = "",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/DarkDoorsKing/Doors/main/Main"))()
+        end
+})    tabs.Door:AddButton({
+        Title = "Kolbol Hub",
+        Description = "Need Key",  
+        Callback = function()
+            loadstring(game:HttpGet("https://pastefy.app/awczkDwJ/raw"))()
+        end
+    })   tabs.Door:AddButton({
+        Title = "Kittycat Hub",
+        Description = "",  
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/CatEnddroid/Kitty-Cats-Doors-Beta/refs/heads/main/hub.lua"))()
+        end
+})    tabs.Door:AddButton({
+        Title = "FFJ Hub",
+        Description = "Need Key",  
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/FFJ1/Roblox-Exploits/main/scripts/Loader.lua"))()
+        end
+})
+
+
+
+
+
+
+
+-------[            King Legacy            ]--------
+
+
+
+
+
+
+
+
+
+    tabs.KingLegacy:AddButton({
+    Title = "ARC Hub",
+    Description = "Need Key",
+    Callback = function()
+       loadstring(game:HttpGet("https://raw.githubusercontent.com/ChopLoris/ArcHub/main/main.lua"))() 
+    end
+})    tabs.KingLegacy:AddButton({
+    Title = "Zen Hub",
+    Description = "Need Key",
+    Callback = function()
+        -- Zen Hub
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Zenhubtop/zen_hub_pr/main/zennewwwwui.lua", true))()
+    end
+})    tabs.KingLegacy:AddButton({
+    Title = "Hyper Hab Script",
+    Description = "",
+    Callback = function()
+        repeat wait() until game:IsLoaded()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/Hyper/main/script.lua"))()
+    end
+})    tabs.KingLegacy:AddButton({
+    Title = "Tsuo Hub",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Tsuo7/TsuoHub/main/king%20legacy"))()
     end
 })
 
