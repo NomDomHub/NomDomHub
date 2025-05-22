@@ -35,7 +35,7 @@ local window = Fluent:CreateWindow({
     Title = isSpecialUser and "NomDom Hub [Premium]" or "NomDom Hub [Freemium]",
     SubTitle = "by Sus",
     TabWidth = (UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled) and 160 or 190,  -- Mobile: 160, PC: 190
-    Theme = "Dark",
+    Theme = "R2LX",
     Acrylic = false,
     Size = (UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled) and UDim2.fromOffset(600, 430) or UDim2.fromOffset(700, 490),  -- Giữ như trước
     MinimizeKey = Enum.KeyCode.End
@@ -459,21 +459,17 @@ RunService.RenderStepped:Connect(function()
 end)
 
 
-
 -- Biến để lưu trạng thái của toggle
 local isTeleportEnabled = false  
 
 -- Thêm toggle vào tab Misc
 Misc:AddToggle("TeleportToggle", {
-    Title = "Click to teleport",   -- Tiêu đề của Toggle
-    Default = false,  -- Trạng thái mặc định (tắt)
+    Title = "Click to teleport",
+    Description = "Only use when using PC.",
+    Default = false,
     Callback = function(state)
-        isTeleportEnabled = state  -- Lưu trạng thái của toggle
-        if isTeleportEnabled then
-            print("NomDom Hub On Top")
-        else
-            print("NomDom Hub On Top")
-        end
+        isTeleportEnabled = state
+        print("NomDom Hub On Top")
     end
 })
 
@@ -481,61 +477,37 @@ Misc:AddToggle("TeleportToggle", {
 local player = game.Players.LocalPlayer
 local mouse = player:GetMouse()
 
--- Đảm bảo rằng có GUI và nhân vật đã được tải
-local character = player.Character or player.CharacterAdded:Wait()
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+-- Biến toàn cục để lưu HumanoidRootPart mới nhất
+local humanoidRootPart = nil
+
+-- Hàm cập nhật humanoidRootPart khi nhân vật được tạo lại
+local function updateCharacter(character)
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+end
+
+-- Gọi cập nhật ngay lập tức nếu nhân vật đã tồn tại
+if player.Character then
+    updateCharacter(player.Character)
+end
+
+-- Lắng nghe sự kiện hồi sinh nhân vật
+player.CharacterAdded:Connect(updateCharacter)
 
 -- Hàm xử lý khi click chuột trái
 mouse.Button1Down:Connect(function()
-    -- Kiểm tra xem teleport có được bật không
-    if isTeleportEnabled then
-        -- Lấy vị trí click chuột
+    if isTeleportEnabled and humanoidRootPart then
         local clickPosition = mouse.Hit.p
-        
-        -- Dịch chuyển nhân vật đến vị trí click (thêm chút cao hơn để tránh vướng mặt đất)
         humanoidRootPart.CFrame = CFrame.new(clickPosition + Vector3.new(0, 2, 0))
     end
 end)
 
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
 
 
--- Hàm cập nhật zoom khi bật toggle
-local function updateZoom(state)
-    if state then
-        player.CameraMinZoomDistance = 0 -- ✅ thay vì 0.5 như trước
-        player.CameraMaxZoomDistance = math.huge
-    end
-end
-
--- Đảm bảo thiết lập lại khi respawn
-player.CharacterAdded:Connect(function()
-    if player:GetAttribute("ZoomEnabled") then
-        updateZoom(true)
-    end
-end)
-
--- Toggle trong UI
-Misc:AddToggle("camera_zoom_toggle", {
-    Title = "Camera Is Not Locked",
-    Default = false,
-    Callback = function(state)
-        player:SetAttribute("ZoomEnabled", state)
-        updateZoom(state)
-    end
-})
-
--- Thiết lập ban đầu
-if player.Character then
-    updateZoom(true)
-end
-
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
 
 
--- Lưu giá trị gốc mặc định trước khi chỉnh
+
+
+-- 🌌 Infinite Zoom Toggle
 local defaultMaxZoom = player.CameraMaxZoomDistance
 
 Misc:AddToggle("unlimited_zoom_toggle", {
@@ -549,6 +521,47 @@ Misc:AddToggle("unlimited_zoom_toggle", {
         end
     end
 })
+
+
+
+
+
+
+
+
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local player = Players.LocalPlayer
+
+-- 🔘 Unlock Camera Button (giữ nguyên hàm như bạn viết)
+Misc:AddButton({
+    Title = "Unlock Camera",
+    Description = "Only use when camera is locked.",
+    Callback = function()
+        Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
+        UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+    end
+})
+
+
+
+-- 🖱️ Unlock Mouse Button (giữ nguyên hàm như bạn viết)
+Misc:AddButton({
+    Title = "Unlock Mouse",
+    Description = "Only use when using PC and mouse is locked.",
+    Callback = function()
+        -- Đặt đoạn mã này trong StarterPlayerScripts
+        UserInputService.MouseBehavior = Enum.MouseBehavior.Default
+
+        RunService.RenderStepped:Connect(function()
+            -- RenderStepped is running
+        end)
+    end
+})
+
+
+
 
 
 
@@ -2062,6 +2075,36 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/10f7f97cebba24
 }
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubAutoBounty"))()
+    end
+})    Autobounty:AddButton({
+    Title = "Radiant Hub",
+    Description = "I don't know",
+    Callback = function()
+        getgenv().Config = {
+    ["Select Team"] = "Pirate", -- Pirate / Marine
+    ["Skills"] = {
+        ["Melee"] = true,
+        ["Fruit"] = true,
+        ["Sword"] = true,
+        ["Gun"] = false
+    },
+    ['Use Skill'] = {
+        ["Melee"] = {'Z','X','C'},
+        ["Fruit"] = {'Z','X','C','V','F'},
+        ["Sword"] = {'Z','X'},
+        ["Gun"] = {'Z','X'}
+    },
+    ["Hold Skill"] = {
+        ["Melee"] = {0,0,0},
+        ["Fruit"] = {0,0,0,0,0},
+        ["Sword"] = {0,0},
+        ["Gun"] = {0,0}
+    },
+    ['Gui Enabled'] = true,
+    ["Smart Teleport"] = true,
+    ["Webhook_Url"] = 'put ur webhook here'
+}
+loadstring(game:HttpGet('https://raw.githubusercontent.com/x2RunE/QuynhLaSo1/refs/heads/main/RadiantAutoBounty.lua'))()
     end
 })    Autobounty:AddButton({
     Title = "Hiru Hub",
