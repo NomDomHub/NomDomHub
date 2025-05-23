@@ -534,15 +534,14 @@ local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 
--- 🔘 Unlock Camera Button (giữ nguyên hàm như bạn viết)
 Misc:AddButton({
     Title = "Unlock Camera",
     Description = "Only use when camera is locked.",
     Callback = function()
         Players.LocalPlayer.CameraMode = Enum.CameraMode.Classic
-        UserInputService.MouseBehavior = Enum.MouseBehavior.Default
     end
 })
+
 
 
 
