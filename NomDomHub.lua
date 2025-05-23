@@ -33,7 +33,7 @@ end
 -- Tạo cửa sổ Fluent
 local window = Fluent:CreateWindow({
     Title = isSpecialUser and "NomDom Hub [Premium]" or "NomDom Hub [Freemium]",
-    SubTitle = "by Sus",
+    SubTitle = "by Sus | https://discord.gg/ZKjAJvYj",
     TabWidth = (UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled and not UserInputService.MouseEnabled) and 160 or 190,  -- Mobile: 160, PC: 190
     Theme = "R2LX",
     Acrylic = false,
@@ -104,7 +104,7 @@ Community:AddButton({
     Title = "NomDom Community",
     Description = "Discord",
     Callback = function()
-        setclipboard("https://discord.gg/XJZmMVuU")
+        setclipboard("https://discord.gg/ZKjAJvYj")
     end
 })
 
@@ -1166,7 +1166,213 @@ ScriptPaidMup:AddButton({
 
 
 
+local Transform = tabs.Bloxfruit:AddSection("Transform")
 
+
+
+
+    Transform:AddButton({
+    Title = "NomDom v4",
+    Description = "Animation",
+    Callback = function()   
+        ---tộc quỷ 
+
+setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(150, 0, 0),
+    Color2 = Color3.fromRGB(100, 0, 0),
+    Color3 = Color3.fromRGB(255, 0, 100)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+
+
+---Tộc người máy
+
+setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(255, 200, 255),
+    Color2 = Color3.fromRGB(255, 150, 255),
+    Color3 = Color3.fromRGB(255, 100, 255)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+
+---tộc cá 
+
+setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(0, 100, 255),
+    Color2 = Color3.fromRGB(0, 150, 200),
+    Color3 = Color3.fromRGB(0, 200, 255)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+
+
+----tộc draco
+
+setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(90, 0, 150),
+    Color2 = Color3.fromRGB(60, 0, 100),
+    Color3 = Color3.fromRGB(120, 0, 200)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+
+----Thiên thần 
+
+setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(255, 255, 255),
+    Color2 = Color3.fromRGB(200, 200, 255),
+    Color3 = Color3.fromRGB(150, 200, 255)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+
+-----Human 
+
+
+
+setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(255, 0, 0),
+    Color2 = Color3.fromRGB(200, 0, 0),
+    Color3 = Color3.fromRGB(255, 50, 50)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+    end
+})    Transform:AddButton({
+    Title = "Human v4",
+    Description = "Animation",
+    Callback = function()   
+        setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(255, 0, 0),
+    Color2 = Color3.fromRGB(200, 0, 0),
+    Color3 = Color3.fromRGB(255, 50, 50)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+    end
+})
+    Transform:AddButton({
+    Title = "Ghoul v4",
+    Description = "Animation",
+    Callback = function()   
+        setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(150, 0, 0),
+    Color2 = Color3.fromRGB(100, 0, 0),
+    Color3 = Color3.fromRGB(255, 0, 100)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+    end
+})    Transform:AddButton({
+    Title = "Cyborg	v4",
+    Description = "Animation",
+    Callback = function()   
+        setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(255, 200, 255),
+    Color2 = Color3.fromRGB(255, 150, 255),
+    Color3 = Color3.fromRGB(255, 100, 255)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+    end
+})    Transform:AddButton({
+    Title = "Shark v4",
+    Description = "Animation",
+    Callback = function()   
+       setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(0, 100, 255),
+    Color2 = Color3.fromRGB(0, 150, 200),
+    Color3 = Color3.fromRGB(0, 200, 255)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end) 
+    end
+})    Transform:AddButton({
+    Title = "Draco v4",
+    Description = "Animation",
+    Callback = function()   
+        setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(90, 0, 150),
+    Color2 = Color3.fromRGB(60, 0, 100),
+    Color3 = Color3.fromRGB(120, 0, 200)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+    end
+})    Transform:AddButton({
+    Title = "Angel v4",
+    Description = "Animation",
+    Callback = function()   
+        setthreadcontext(5)
+local args = {
+    Character = game.Players.LocalPlayer.Character,
+    CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame,
+    Color1 = Color3.fromRGB(255, 255, 255),
+    Color2 = Color3.fromRGB(200, 200, 255),
+    Color3 = Color3.fromRGB(150, 200, 255)
+}
+game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(game.ReplicatedStorage.Util.Anims.Storage["2"].RaceTransform):Play()
+delay(1, function()
+    require(game.ReplicatedStorage.Effect.Container.RaceTransformation.Main)(args)
+end)
+    end
+})
 
 
 
@@ -1188,7 +1394,7 @@ local Mainbf = tabs.Bloxfruit:AddSection("Main")---- Add mục Main
 
 Mainbf:AddButton({
     Title = "Fast Attack",
-    Description = "",
+    Description = "No Key",
     Callback = function()   
         loadstring(game:HttpGet("https://raw.githubusercontent.com/TDDuym500/NomDom/refs/heads/main/FastAttack.lua"))()
     end
@@ -1241,6 +1447,18 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/MinGamingHubNew/Banan
         loadstring(game:HttpGet("https://raw.githubusercontent.com/farghii/relzhub/refs/heads/main/loader.lua"))()
     end
 })    Mainbf:AddButton({
+    Title = "Arceney.cc",
+    Description = "I don't know",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/4lpaca-pin/Arceney/refs/heads/main/main.luau"))()
+    end
+})      Mainbf:AddButton({
+    Title = "Ronix Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b2db2af40b53ef0a502f6d561b4c6449.lua"))()
+    end
+})      Mainbf:AddButton({
     Title = "Zinner Hub",
     Description = "Need Key",
     Callback = function()
@@ -1254,6 +1472,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/HoangNguyenk8/Roblox/
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Jadelly261/BloxFruits/main/Aurora", true))() 
     end
 })      Mainbf:AddButton({
+    Title = "Tbao Hub ( Bring Mod )",
+    Description = "I don't know",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/tbao143/thaibao/refs/heads/main/TbaoHubBringFruit"))()
+    end
+})      Mainbf:AddButton({
     Title = "Vocano Hub V3",
     Description = "I don't know",
     Callback = function()
@@ -1261,7 +1485,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/HoangNguyenk8/Roblox/
     end
 })   Mainbf:AddButton({
     Title = "Vxeze Hub",
-    Description = "No Ket",
+    Description = "No Key",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
     end
@@ -1421,7 +1645,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/LuaCrack/Loader/main/
     end
 })    Mainbf:AddButton({
     Title = "Alchemy Hub",
-    Description = "Need Key",
+    Description = "get key at alchemyhub.xyz",
     Callback = function()
         loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
     end
@@ -1536,6 +1760,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepza
     Description = "No Key",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/Auto-Tyrant-TEDDYHUB"))()
+    end
+})    Hopbf:AddButton({
+    Title = "Teddy Hub Auto Pull Lever",
+    Description = "No Key",
+    Callback = function()
+        repeat task.wait() until game:IsLoaded() and game:GetService("Players") and game.Players.LocalPlayer and game.Players.LocalPlayer:FindFirstChild("PlayerGui")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Teddyseetink/Haidepzai/refs/heads/main/TEDDYHUB-AUTOPULLLever"))()
     end
 })
 
@@ -2213,7 +2444,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Source/m
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Kenniel123/Grow-a-garden/refs/heads/main/Grow%20A%20Garden"))()
     end
 })    tabs.Growagarden:AddButton({
-    Title = "Join Old Server",
+    Title = "Menace Hub Hop Old Server",
     Description = "No Key",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/M-E-N-A-C-E/Menace-Hub/refs/heads/main/Old%20Server%20Finder%20Grow%20a%20Garden", true))()
@@ -2431,7 +2662,7 @@ end
 
 tabs.Bluelock:AddButton({
     Title = "Alchemy Hub",
-    Description = "Need Key",
+    Description = "Get key at alchemyhub.xyz",
     Callback = function()
         loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
     end
@@ -2588,6 +2819,12 @@ tabs.Bluelock:AddButton({
 
 
     tabs.Forsaken:AddButton({
+    Title = "Vxeze Hub",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Dex-Bear/Vxezehub/refs/heads/main/VxezeHubMain"))()
+    end
+})    tabs.Forsaken:AddButton({
     Title = "ShitScripts",
     Description = "I don't know",
     Callback = function()
@@ -2637,6 +2874,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ivannetta/ShitScripts
 
 
     tabs.Bladeball:AddButton({
+    Title = "Arceney.cc",
+    Description = "I don't know",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/4lpaca-pin/Arceney/refs/heads/main/main.luau"))()
+    end
+})    tabs.Bladeball:AddButton({
     Title = "Yon Hub",
     Description = "I don't know",
     Callback = function()
@@ -2869,6 +3112,18 @@ tabs.Petgo:AddButton({
 
 
    tabs.Deedrails:AddButton({
+    Title = "Ringta Train Kill Aura [BETA TEST]",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hbjrev/trainkillaura.github.io/refs/heads/main/trainkill.lua"))()
+    end
+})    tabs.Deedrails:AddButton({
+    Title = "Ringta Auto Farm Bond",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hbjrev/erre.github.io/refs/heads/main/erjre.lua"))()
+    end
+})    tabs.Deedrails:AddButton({
     Title = "MoonDiety Auto Win",
     Description = "No Key",
     Callback = function()
@@ -3131,6 +3386,12 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/XUANVNPRO/Bondfarm/re
 
 
    tabs.BubbleRubber:AddButton({
+    Title = "Ronix Hub",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/588c84c135c213eb9badde611f08be9b.lua"))()
+    end
+})   tabs.BubbleRubber:AddButton({
     Title = "Smoke Hub",
     Description = "No Key",
     Callback = function()
@@ -3192,7 +3453,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/0vma/Strelizia/refs/h
     end
 })     tabs.BubbleRubber:AddButton({
     Title = "Alchemy Hub",
-    Description = "Need Key",
+    Description = "Get key at alchemyhub.xyz",
     Callback = function()
         loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
     end
@@ -3422,7 +3683,7 @@ tabs.Volleyball:AddButton({
 })
     tabs.Basketball:AddButton({
     Title = "Alchemy Hub",
-    Description = "Need Key",
+    Description = "Get key at alchemyhub.xyz",
     Callback = function()
         loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
     end
@@ -3531,6 +3792,12 @@ tabs.Tsb:AddButton({
 
 
     tabs.Mm2:AddButton({
+    Title = "Ather Hub",
+    Description = "I don't know",
+    Callback = function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/Murder-Mystery-2-AtherHub-33780"))()
+    end
+})    tabs.Mm2:AddButton({
     Title = "Kiciahook Hub",
     Description = "I don't know",
     Callback = function()
@@ -3872,6 +4139,12 @@ loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/74c9ed77af04c6
 
 
     tabs.Door:AddButton({
+        Title = "Arceney.cc",
+        Description = "I don't know",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/4lpaca-pin/Arceney/refs/heads/main/main.luau"))()
+        end
+})     tabs.Door:AddButton({
         Title = "Mspaint V4",
         Description = "Have Key,Copy Web And Join Discord Link To Getkey",
         Callback = function()
