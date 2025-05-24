@@ -84,6 +84,7 @@ local tabs = {
     Evade = window:AddTab({ Title = "Evade" }),
     GymLeague = window:AddTab({ Title = "Gym League" }),
     MemeSea = window:AddTab({ Title = "Meme Sea" }),
+    Slaptower = window:AddTab({ Title = "Slap Tower" }),
     Misc = window:AddTab({ Title = "Misc" }),
 }
 
@@ -2437,6 +2438,24 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/NGUYENVUDUY1/Source/m
 
 
     tabs.Growagarden:AddButton({
+    Title = "Dash Script",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Vax3478/Vax/refs/heads/main/growagarden-dashscriptkeyless"))()
+    end
+})     tabs.Growagarden:AddButton({
+    Title = "Alchemy Hub",
+    Description = "Need Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://scripts.alchemyhub.xyz"))()
+    end
+})     tabs.Growagarden:AddButton({
+    Title = "Mercenaries Hub",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/kosowa/asd/refs/heads/main/GaG.lua"))() 
+    end
+})    tabs.Growagarden:AddButton({
     Title = "Kenniel Script",
     Description = "No Key",
     Callback = function()
@@ -3111,6 +3130,12 @@ tabs.Petgo:AddButton({
 
 
    tabs.Deedrails:AddButton({
+    Title = "MoonDiety Auto Bond",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/m00ndiety/OP-AUTO-BONDS-V3/refs/heads/main/Keyless-BONDS-v3"))()
+    end
+})   tabs.Deedrails:AddButton({
     Title = "Ringta Train Kill Aura [BETA TEST]",
     Description = "No Key",
     Callback = function()
@@ -4381,6 +4406,37 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/DookDekDEE/Hyper/main
     Description = "No Key",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/ZaqueHub/ShinyHub-MMSea/main/MEME%20SEA%20PROTECT.txt'))()
+    end
+})
+
+
+
+
+
+
+
+
+
+
+-------[            Slap Tower            ]--------
+
+
+
+
+
+
+
+    tabs.Slaptower:AddButton({
+    Title = "Kuncicoco Hub",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/dhiosetia/pastebin/refs/heads/main/README.md"))()
+    end
+})    tabs.Slaptower:AddButton({
+    Title = "Script by botreal1",
+    Description = "No Key",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Rawbr10/Roblox-Scripts/refs/heads/main/Slap-Tower-Script"))() 
     end
 })
 
