@@ -1,6 +1,1 @@
-getgenv().WebhookURLs = {
-    [Dora] = true, 
-    [TuanAnhIos] = false
-}
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/TDDuym500/npmc_/refs/heads/main/NotifyBloxFruit.lua"))()
+print(1)
