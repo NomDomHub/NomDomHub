@@ -1,3 +1,7 @@
+----sài đi do chat gbt lm đấy
+
+
+
 local Players = game:GetService("Players")
 local TweenService = game:GetService("TweenService")
 local Lighting = game:GetService("Lighting")
